@@ -628,3 +628,73 @@ footer {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
 }
+
+@media (max-width: 768px) {
+
+  /* navbar */
+  nav {
+    padding: 0 20px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 12.5px; }
+
+  /* hero principal */
+  .hero { padding: 60px 24px 52px; min-height: auto; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+
+  /* hero mini (páginas internas) */
+  .hero-mini { padding: 40px 24px 36px; }
+
+  /* secciones genéricas */
+  .seccion { padding: 52px 24px; }
+
+  /* grillas de 2 columnas → 1 columna */
+  .oferta-grid              { grid-template-columns: 1fr 1fr; }
+  .planes-grid              { grid-template-columns: 1fr; }
+  .campana-inner            { grid-template-columns: 1fr; gap: 32px; }
+  .footer-inner             { grid-template-columns: 1fr; gap: 32px; }
+
+  /* historia: texto + sidebar → apilados */
+  .seccion-inner [style*="grid-template-columns:1fr 340px"],
+  .seccion-inner [style*="grid-template-columns: 1fr 1fr"],
+  .seccion-inner [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  /* sidebar de cronología: quitar sticky en mobile */
+  .seccion-inner [style*="position:sticky"],
+  .seccion-inner [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* foto + datos institucionales */
+  .seccion-inner [style*="grid-template-columns:1fr 1fr"] img {
+    min-height: 220px !important;
+  }
+
+  /* videos: en mobile 1 columna */
+  .seccion-inner [style*="grid-template-columns:repeat(3,1fr)"],
+  .seccion-inner [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* instagram: 1 columna */
+  .seccion-inner [style*="repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* footer */
+  .footer-bottom {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  /* planes: quitar tabs side by side */
+  .form-fila { grid-template-columns: 1fr; }
+}
