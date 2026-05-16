@@ -7,7 +7,6 @@
   <meta name="description" content="Campaña de ex alumnos socios del Centro Educativo Dr. Virgilio Barbalato, General Levalle, Córdoba.">
   <link rel="stylesheet" href="css/estilos.css">
   <style>
-    /* Estilos específicos de esta página */
     .beneficio-item {
       display: flex;
       gap: 16px;
@@ -17,58 +16,102 @@
     }
     .beneficio-item:last-child { border-bottom: none; }
     .beneficio-icono {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       border-radius: 8px;
       background: var(--verde-suave);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
     }
     .beneficio-item h3 { font-size: 15px; font-weight: 600; color: var(--verde-oscuro); margin-bottom: 4px; }
     .beneficio-item p  { font-size: 13.5px; color: var(--texto-suave); line-height: 1.6; }
 
-    .form-campo {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
+    /* Planes */
+    .planes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 780px;
+      margin: 0 auto;
     }
-    .form-campo label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--verde-oscuro);
-      letter-spacing: 0.01em;
-    }
-    .form-campo input,
-    .form-campo select,
-    .form-campo textarea {
-      border: 1.5px solid var(--crema-oscura);
-      border-radius: 4px;
-      padding: 10px 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: var(--texto);
+    .plan-card {
       background: var(--blanco);
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
+      border-radius: 8px;
+      padding: 32px 28px;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      display: flex; flex-direction: column;
+    }
+    .plan-card.destacado { border-color: var(--verde); position: relative; }
+    .plan-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--verde); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+    }
+    .plan-nombre {
+      font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700;
+      color: var(--verde-oscuro); margin-bottom: 6px;
+    }
+    .plan-precio {
+      font-size: 2rem; font-weight: 700; color: var(--verde);
+      font-family: 'Lora', serif; line-height: 1.1; margin-bottom: 4px;
+    }
+    .plan-precio span { font-size: 0.85rem; font-weight: 400; color: var(--texto-suave); }
+    .plan-precio-nota { font-size: 12px; color: var(--texto-suave); margin-bottom: 16px; min-height: 18px; }
+    .plan-desc { font-size: 13.5px; color: var(--texto-suave); margin-bottom: 20px; line-height: 1.6; }
+    .plan-beneficios {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 8px; margin-bottom: 28px; flex: 1;
+    }
+    .plan-beneficios li {
+      font-size: 13.5px; color: var(--texto);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .plan-beneficios li::before {
+      content: '✓'; color: var(--verde); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Tabs pago plan 2 */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid var(--crema-oscura);
+      margin-bottom: 18px;
+    }
+    .tab-btn {
+      flex: 1; background: none; border: none;
+      padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px; font-weight: 500;
+      color: var(--texto-suave); cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+      text-align: center; line-height: 1.5;
+    }
+    .tab-btn.activo { color: var(--verde-oscuro); border-bottom-color: var(--verde); font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.activo { display: block; }
+
+    /* Formulario */
+    .form-campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-campo label { font-size: 13px; font-weight: 600; color: var(--verde-oscuro); }
+    .form-campo input,
+    .form-campo textarea {
+      border: 1.5px solid var(--crema-oscura); border-radius: 4px;
+      padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--texto); background: var(--blanco);
+      outline: none; transition: border-color 0.2s; width: 100%;
     }
     .form-campo input:focus,
-    .form-campo select:focus,
     .form-campo textarea:focus { border-color: var(--verde); }
-    .form-campo textarea { resize: vertical; min-height: 80px; }
+    .form-campo textarea { resize: vertical; min-height: 90px; }
     .form-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-nota { font-size: 12px; color: var(--texto-suave); margin-top: 6px; }
   </style>
 </head>
 <body>
 
 <!-- Barra de anuncio -->
 <div class="anuncio">
-  🎓 Campaña 2025: sumate como ex alumno socio y ayudá a crecer a la escuela.
+  🎓 Campaña 2026: sumate como ex alumno socio y ayudá a crecer a la escuela.
 </div>
 
 <!-- Navegación -->
@@ -92,7 +135,7 @@
   <div class="hero-pattern"></div>
   <div class="hero-acento"></div>
   <div class="hero-mini-inner">
-    <p class="hero-mini-eyebrow">Campaña de ex alumnos · 2025</p>
+    <p class="hero-mini-eyebrow">Campaña de ex alumnos · 2026</p>
     <h1 class="hero-mini-titulo">Sumate a la red de socios</h1>
     <p class="hero-mini-desc">
       Si pasaste por las aulas de la escuela, sos parte de su historia.
@@ -101,154 +144,164 @@
   </div>
 </section>
 
-<!-- Por qué sumarse -->
+<!-- ¿Para qué sirve tu apoyo? (ancho completo) -->
 <section class="seccion" style="background:var(--crema);">
-  <div class="seccion-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
-    <div>
-      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
-        ¿Para qué sirve tu aporte?
-      </p>
-      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:24px; line-height:1.25;">
-        Cada socio hace una diferencia real
-      </h2>
-      <div class="beneficio-item">
-        <div class="beneficio-icono">🏫</div>
-        <div>
-          <h3>Infraestructura y mantenimiento</h3>
-          <p>Ayuda a mantener y mejorar el edificio histórico de Carlos Pellegrini 331 para que siga siendo un espacio digno para los chicos.</p>
+  <div class="seccion-inner">
+    <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
+      ¿Para qué sirve tu aporte?
+    </p>
+    <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:36px; line-height:1.25; max-width:560px;">
+      Cada socio hace una diferencia real
+    </h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 60px;">
+      <div>
+        <div class="beneficio-item">
+          <div class="beneficio-icono">🏫</div>
+          <div>
+            <h3>Infraestructura y mantenimiento</h3>
+            <p>Ayuda a mantener y mejorar el edificio histórico de Carlos Pellegrini 331 para que siga siendo un espacio digno para los chicos.</p>
+          </div>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-icono">💻</div>
+          <div>
+            <h3>Equipamiento tecnológico</h3>
+            <p>Contribuye a renovar computadoras, proyectores y otros recursos que complementan el aprendizaje en el aula.</p>
+          </div>
         </div>
       </div>
-      <div class="beneficio-item">
-        <div class="beneficio-icono">💻</div>
-        <div>
-          <h3>Equipamiento tecnológico</h3>
-          <p>Contribuye a renovar computadoras, proyectores y otros recursos que complementan el aprendizaje en el aula.</p>
+      <div>
+        <div class="beneficio-item">
+          <div class="beneficio-icono">📚</div>
+          <div>
+            <h3>Biblioteca y materiales</h3>
+            <p>La biblioteca escolar tiene más de un siglo de historia. Con tu apoyo puede seguir creciendo y estar disponible para toda la comunidad.</p>
+          </div>
         </div>
-      </div>
-      <div class="beneficio-item">
-        <div class="beneficio-icono">📚</div>
-        <div>
-          <h3>Biblioteca y materiales</h3>
-          <p>La biblioteca escolar tiene más de un siglo de historia. Con tu apoyo, puede seguir creciendo y estar disponible para toda la comunidad.</p>
+        <div class="beneficio-item">
+          <div class="beneficio-icono">🎭</div>
+          <div>
+            <h3>Actividades y proyectos</h3>
+            <p>Actos, salidas educativas, talleres de arte y teatro: las actividades que enriquecen la experiencia escolar también necesitan apoyo.</p>
+          </div>
         </div>
-      </div>
-      <div class="beneficio-item">
-        <div class="beneficio-icono">🎭</div>
-        <div>
-          <h3>Actividades y proyectos</h3>
-          <p>Actos, salidas educativas, talleres de arte y teatro: las actividades que enriquecen la experiencia escolar también necesitan apoyo.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Planes -->
-    <div>
-      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
-        Planes de membresía
-      </p>
-      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:8px; line-height:1.25;">
-        Elegí cómo participar
-      </h2>
-      <p style="font-size:14px; color:var(--texto-suave); margin-bottom:24px; line-height:1.6;">
-        Los montos son orientativos y pueden ajustarse. Lo importante es que te sumes.
-      </p>
-
-      <!--
-        PLANES: definir los valores definitivos con la escuela antes de publicar.
-        Actualmente son montos de referencia.
-      -->
-      <div style="display:flex; flex-direction:column; gap:16px;">
-
-        <div class="plan-card">
-          <div class="plan-nombre">Socio adherente</div>
-          <div class="plan-precio">A definir <span>/ mes</span></div>
-          <p class="plan-desc">Para quienes quieren acompañar con lo que pueden.</p>
-          <ul class="plan-beneficios">
-            <li>Participación en la red de ex alumnos</li>
-            <li>Actualizaciones sobre la escuela</li>
-            <li>Reconocimiento en el sitio web</li>
-          </ul>
-          <a href="#formulario" class="btn-primario" style="text-align:center; background:var(--verde); color:#fff;">Me interesa</a>
-        </div>
-
-        <div class="plan-card destacado">
-          <span class="plan-badge">Más elegido</span>
-          <div class="plan-nombre">Socio activo</div>
-          <div class="plan-precio">A definir <span>/ mes</span></div>
-          <p class="plan-desc">Para quienes quieren un compromiso más visible con la institución.</p>
-          <ul class="plan-beneficios">
-            <li>Todo lo del plan adherente</li>
-            <li>Voto en las asambleas de la red</li>
-            <li>Invitación a actos y eventos especiales</li>
-            <li>Certificado digital de ex alumno socio</li>
-          </ul>
-          <a href="#formulario" class="btn-primario" style="text-align:center;">Me interesa</a>
-        </div>
-
-        <div class="plan-card">
-          <div class="plan-nombre">Socio patrocinador</div>
-          <div class="plan-precio">A definir <span>/ mes</span></div>
-          <p class="plan-desc">Para empresas, comercios o personas que quieren un apoyo mayor.</p>
-          <ul class="plan-beneficios">
-            <li>Todo lo del plan activo</li>
-            <li>Mención en materiales y eventos</li>
-            <li>Logo en el sitio web de la escuela</li>
-            <li>Coordinación directa con la dirección</li>
-          </ul>
-          <a href="#formulario" class="btn-primario" style="text-align:center; background:var(--verde); color:#fff;">Me interesa</a>
-        </div>
-
       </div>
     </div>
   </div>
 </section>
 
-<!-- Formulario de registro -->
-<section class="seccion" style="background:var(--dorado-claro);" id="formulario">
-  <div class="seccion-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
-    <div>
-      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
-        Primer paso
-      </p>
-      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:16px; line-height:1.25;">
-        Registrá tu interés
-      </h2>
-      <div class="prose">
-        <p>
-          Completá el formulario y nos ponemos en contacto con vos para contarte
-          cómo funciona la membresía, los medios de pago disponibles y cómo
-          podés empezar a participar.
-        </p>
-        <p>
-          No te compromete a nada: es solo para que podamos armar la red y
-          contactarte con más información.
-        </p>
-      </div>
-      <div style="margin-top:28px; padding:20px; background:rgba(255,255,255,0.6); border-radius:8px;">
-        <p style="font-size:13px; color:var(--texto-suave); line-height:1.7;">
-          <strong style="color:var(--verde-oscuro);">¿Tenés dudas?</strong><br>
-          Escribinos por Instagram:
-          <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
-             style="color:var(--verde); font-weight:600; text-decoration:none;">@primariavirgiliobarbalato</a>
-        </p>
-      </div>
-    </div>
+<!-- Planes (ancho completo, centrado) -->
+<section class="seccion" style="background:var(--crema-oscura);">
+  <div class="seccion-inner">
+    <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px; text-align:center;">
+      Planes de membresía
+    </p>
+    <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:8px; line-height:1.25; text-align:center;">
+      Elegí cómo participar
+    </h2>
+    <p style="font-size:14px; color:var(--texto-suave); margin-bottom:40px; line-height:1.6; text-align:center; max-width:480px; margin-left:auto; margin-right:auto;">
+      Dos formas de sumarte según tus posibilidades. Ambas hacen la diferencia.
+    </p>
 
-    <!-- Formulario -->
+    <div class="planes-grid">
+
+      <!-- Plan 1: mensual -->
+      <div class="plan-card">
+        <div class="plan-nombre">Socio adherente</div>
+        <div class="plan-precio">$3.000 <span>/ mes</span></div>
+        <p class="plan-precio-nota">débito o transferencia mensual</p>
+        <p class="plan-desc">
+          Para quienes quieren acompañar de forma continua y sostenida,
+          con un aporte accesible mes a mes.
+        </p>
+        <ul class="plan-beneficios">
+          <li>Participación en la red de ex alumnos</li>
+          <li>Novedades y actualizaciones de la escuela</li>
+          <li>Reconocimiento en el sitio web como ex alumno socio</li>
+          <li>Invitación a actos y eventos especiales</li>
+        </ul>
+        <a href="#formulario-alternativo" class="btn-primario"
+           style="text-align:center; background:var(--verde); color:#fff; display:block;">
+          Quiero sumarme
+        </a>
+      </div>
+
+      <!-- Plan 2: semestral / anual con tabs -->
+      <div class="plan-card destacado">
+        <span class="plan-badge">Mayor impacto</span>
+
+        <div class="plan-nombre" style="margin-top:8px;">Socio activo</div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn activo" onclick="cambiarTab('semestral')">
+            2 pagos semestrales<br>
+            <strong>$50.000 c/u</strong>
+          </button>
+          <button class="tab-btn" onclick="cambiarTab('anual')">
+            1 pago anual<br>
+            <strong>$85.000</strong>
+          </button>
+        </div>
+
+        <!-- Panel semestral -->
+        <div class="tab-panel activo" id="panel-semestral">
+          <div class="plan-precio">$50.000 <span>× 2 pagos</span></div>
+          <p class="plan-precio-nota">total $100.000 al año</p>
+        </div>
+
+        <!-- Panel anual -->
+        <div class="tab-panel" id="panel-anual">
+          <div class="plan-precio">$85.000 <span>/ año</span></div>
+          <p class="plan-precio-nota">pago único · ahorrás $15.000</p>
+        </div>
+
+        <p class="plan-desc">
+          Para quienes quieren un compromiso más concreto y visible
+          con el futuro de la institución.
+        </p>
+        <ul class="plan-beneficios">
+          <li>Todo lo del plan adherente</li>
+          <li>Certificado digital de ex alumno socio activo</li>
+          <li>Mención en la memoria anual de la escuela</li>
+          <li>Participación en encuentros anuales de ex alumnos</li>
+        </ul>
+        <a href="#formulario-alternativo" class="btn-primario"
+           style="text-align:center; display:block;">
+          Quiero sumarme
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Formulario: otras formas de aportar -->
+<section class="seccion" style="background:var(--dorado-claro);" id="formulario-alternativo">
+  <div class="seccion-inner" style="max-width:680px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px; text-align:center;">
+      Otras formas de aportar
+    </p>
+    <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:12px; line-height:1.25; text-align:center;">
+      ¿Querés contribuir de otra manera?
+    </h2>
+    <p style="font-size:15px; color:var(--texto-suave); line-height:1.8; margin-bottom:32px; text-align:center;">
+      Si tenés en mente una forma de colaborar que no está entre los planes —
+      materiales, servicios, trabajo voluntario, donaciones puntuales —
+      contanos y lo charlamos.
+    </p>
+
     <!--
-      FORMULARIO: actualmente no tiene backend.
-      Opciones para activarlo en GitHub Pages (sitio estático):
-        · Formspree: https://formspree.io — gratis hasta 50 envíos/mes.
-          Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
-        · Netlify Forms: si migrás el hosting a Netlify, funciona sin cambios.
-        · Google Forms embebido: opción más simple, sin configuración.
+      FORMULARIO: sin backend por ahora (GitHub Pages es solo estático).
+      Para activar, usar Formspree:
+        1. Registrarse en https://formspree.io
+        2. Crear un formulario y copiar el ID
+        3. Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
+        4. Agregar method="POST" ya está puesto.
+      Gratis hasta 50 envíos por mes.
     -->
     <div style="background:var(--blanco); border-radius:8px; padding:36px; border:1px solid rgba(0,0,0,0.07);">
-      <h3 style="font-family:'Lora',serif; font-size:1.2rem; color:var(--verde-oscuro); margin-bottom:20px;">
-        Registrarme como ex alumno socio
-      </h3>
       <form action="#" method="POST">
-
         <div class="form-fila">
           <div class="form-campo">
             <label for="nombre">Nombre</label>
@@ -259,53 +312,30 @@
             <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
           </div>
         </div>
-
         <div class="form-campo">
           <label for="email">Correo electrónico</label>
           <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
         </div>
-
         <div class="form-campo">
           <label for="telefono">Teléfono / WhatsApp (opcional)</label>
           <input type="tel" id="telefono" name="telefono" placeholder="+54 ...">
         </div>
-
-        <div class="form-fila">
-          <div class="form-campo">
-            <label for="anio-ingreso">Año aproximado de ingreso</label>
-            <input type="text" id="anio-ingreso" name="anio_ingreso" placeholder="ej. 1990">
-          </div>
-          <div class="form-campo">
-            <label for="anio-egreso">Año aproximado de egreso</label>
-            <input type="text" id="anio-egreso" name="anio_egreso" placeholder="ej. 1995">
-          </div>
-        </div>
-
         <div class="form-campo">
-          <label for="plan">Plan de interés</label>
-          <select id="plan" name="plan">
-            <option value="">— elegí una opción —</option>
-            <option value="adherente">Socio adherente</option>
-            <option value="activo">Socio activo</option>
-            <option value="patrocinador">Socio patrocinador</option>
-            <option value="no-se">Todavía no lo sé</option>
-          </select>
+          <label for="propuesta">¿Cómo te gustaría aportar?</label>
+          <textarea id="propuesta" name="propuesta" required
+            placeholder="Contanos tu idea: donación puntual, materiales, servicios, voluntariado..."></textarea>
         </div>
-
-        <div class="form-campo">
-          <label for="mensaje">¿Algo que quieras agregar? (opcional)</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Un recuerdo, una pregunta, lo que quieras..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-primario" style="width:100%; text-align:center; margin-top:4px;">
-          Enviar →
+        <button type="submit" class="btn-primario"
+          style="width:100%; text-align:center; margin-top:4px; background:var(--verde); color:#fff;">
+          Enviar mi propuesta →
         </button>
-        <p class="form-nota" style="text-align:center; margin-top:12px;">
-          Tus datos se usan solo para contactarte en el marco de esta campaña.
+        <p style="font-size:12px; color:var(--texto-suave); text-align:center; margin-top:12px;">
+          También podés escribirnos por
+          <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+             style="color:var(--verde); font-weight:600; text-decoration:none;">Instagram</a>.
         </p>
       </form>
     </div>
-
   </div>
 </section>
 
@@ -333,7 +363,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 · Escuela Dr. Virgilio Barbalato · General Levalle, Córdoba</span>
+    <span>© 2026 · Escuela Dr. Virgilio Barbalato · General Levalle, Córdoba</span>
     <span>Sitio comunitario sin fines de lucro</span>
   </div>
 </footer>
@@ -348,6 +378,16 @@
   Sitio en desarrollo · no publicar aún
 </div>
 <!-- FIN PREVIEW BADGE -->
+
+<script>
+  function cambiarTab(tab) {
+    document.getElementById('panel-semestral').classList.remove('activo');
+    document.getElementById('panel-anual').classList.remove('activo');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+    document.getElementById('panel-' + tab).classList.add('activo');
+    document.querySelectorAll('.tab-btn')[tab === 'semestral' ? 0 : 1].classList.add('activo');
+  }
+</script>
 
 </body>
 </html>
