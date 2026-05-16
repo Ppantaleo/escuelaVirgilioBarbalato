@@ -629,72 +629,107 @@ footer {
   50%       { opacity: 0.4; }
 }
 
+/* ── NAVBAR TOGGLE (hamburguesa) ──────────────────────────── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-toggle.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.abierto span:nth-child(2) { opacity: 0; }
+.nav-toggle.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 @media (max-width: 768px) {
 
   /* navbar */
   nav {
-    padding: 0 20px;
+    padding: 14px 20px;
     height: auto;
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 14px 20px;
+    gap: 0;
+    position: relative;
   }
-  .nav-links { gap: 16px; }
-  .nav-links a { font-size: 12.5px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 0 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 12px;
+  }
+  .nav-links.abierto { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 10px 4px;
+    font-size: 14px;
+    border-bottom: none;
+  }
+  .nav-links a:hover { border-bottom: none; }
+  .nav-cta {
+    margin-top: 8px;
+    display: block !important;
+    text-align: center !important;
+  }
 
   /* hero principal */
   .hero { padding: 60px 24px 52px; min-height: auto; }
-  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; justify-content: center; }
 
-  /* hero mini (páginas internas) */
+  /* hero mini */
   .hero-mini { padding: 40px 24px 36px; }
 
-  /* secciones genéricas */
+  /* secciones */
   .seccion { padding: 52px 24px; }
 
-  /* grillas de 2 columnas → 1 columna */
-  .oferta-grid              { grid-template-columns: 1fr 1fr; }
-  .planes-grid              { grid-template-columns: 1fr; }
-  .campana-inner            { grid-template-columns: 1fr; gap: 32px; }
-  .footer-inner             { grid-template-columns: 1fr; gap: 32px; }
+  /* grillas con clases */
+  .oferta-grid    { grid-template-columns: 1fr 1fr; }
+  .planes-grid    { grid-template-columns: 1fr !important; }
+  .campana-inner  { grid-template-columns: 1fr; gap: 32px; }
+  .footer-inner   { grid-template-columns: 1fr; gap: 32px; }
 
-  /* historia: texto + sidebar → apilados */
-  .seccion-inner [style*="grid-template-columns:1fr 340px"],
-  .seccion-inner [style*="grid-template-columns: 1fr 1fr"],
-  .seccion-inner [style*="grid-template-columns:1fr 1fr"] {
+  /* grillas inline de 2 columnas → 1 columna
+     cubre tanto "columns:1fr 1fr" como "columns: 1fr 1fr" y "columns:1fr 340px" */
+  [style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
-    gap: 36px !important;
+    gap: 32px !important;
   }
 
-  /* sidebar de cronología: quitar sticky en mobile */
-  .seccion-inner [style*="position:sticky"],
-  .seccion-inner [style*="position: sticky"] {
-    position: static !important;
-  }
+  /* excepciones: grids que NO deben romperse en mobile */
+  .oferta-grid    { grid-template-columns: 1fr 1fr !important; }
+  .hero-botones   { flex-direction: column; align-items: center; }
 
-  /* foto + datos institucionales */
-  .seccion-inner [style*="grid-template-columns:1fr 1fr"] img {
-    min-height: 220px !important;
-  }
+  /* sidebar cronología: quitar sticky */
+  [style*="position:sticky"],
+  [style*="position: sticky"] { position: static !important; }
 
-  /* videos: en mobile 1 columna */
-  .seccion-inner [style*="grid-template-columns:repeat(3,1fr)"],
-  .seccion-inner [style*="grid-template-columns: repeat(3, 1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
+  /* videos e instagram: 1 columna */
+  [style*="repeat(3"] { grid-template-columns: 1fr !important; }
 
-  /* instagram: 1 columna */
-  .seccion-inner [style*="repeat(3,1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* footer */
+  /* footer bottom */
   .footer-bottom {
     flex-direction: column;
     gap: 6px;
     text-align: center;
   }
 
-  /* planes: quitar tabs side by side */
+  /* formularios */
   .form-fila { grid-template-columns: 1fr; }
+
+  /* campaña home: padding menor */
+  .campana { padding: 52px 24px; }
 }

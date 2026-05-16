@@ -25,6 +25,11 @@
       <span>General Levalle · Córdoba</span>
     </div>
   </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="index.html" class="activo">Inicio</a></li>
     <li><a href="historia.html">Historia</a></li>
@@ -376,6 +381,12 @@
   Sitio en desarrollo · no publicar aún
 </div>
 <!-- FIN PREVIEW BADGE -->
+ <script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    this.classList.toggle('abierto');
+    document.querySelector('.nav-links').classList.toggle('abierto');
+  });
+</script>
 
 </body>
 </html>
