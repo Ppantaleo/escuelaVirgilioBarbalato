@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumate como socio — Escuela Dr. Virgilio Barbalato</title>
+  <meta name="description" content="Campaña de ex alumnos socios del Centro Educativo Dr. Virgilio Barbalato, General Levalle, Córdoba.">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Estilos específicos de esta página */
+    .beneficio-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--crema-oscura);
+    }
+    .beneficio-item:last-child { border-bottom: none; }
+    .beneficio-icono {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--verde-suave);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .beneficio-item h3 { font-size: 15px; font-weight: 600; color: var(--verde-oscuro); margin-bottom: 4px; }
+    .beneficio-item p  { font-size: 13.5px; color: var(--texto-suave); line-height: 1.6; }
+
+    .form-campo {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-campo label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+      letter-spacing: 0.01em;
+    }
+    .form-campo input,
+    .form-campo select,
+    .form-campo textarea {
+      border: 1.5px solid var(--crema-oscura);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--texto);
+      background: var(--blanco);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-campo input:focus,
+    .form-campo select:focus,
+    .form-campo textarea:focus { border-color: var(--verde); }
+    .form-campo textarea { resize: vertical; min-height: 80px; }
+    .form-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-nota { font-size: 12px; color: var(--texto-suave); margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+<!-- Barra de anuncio -->
+<div class="anuncio">
+  🎓 Campaña 2025: sumate como ex alumno socio y ayudá a crecer a la escuela.
+</div>
+
+<!-- Navegación -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-circle">VB</div>
+    <div class="nav-logo-texto">
+      <strong>Escuela Dr. Virgilio Barbalato</strong>
+      <span>General Levalle · Córdoba</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="historia.html">Historia</a></li>
+    <li><a href="socios.html" class="activo nav-cta">Sumate como socio</a></li>
+  </ul>
+</nav>
+
+<!-- Hero mini -->
+<section class="hero-mini">
+  <div class="hero-pattern"></div>
+  <div class="hero-acento"></div>
+  <div class="hero-mini-inner">
+    <p class="hero-mini-eyebrow">Campaña de ex alumnos · 2025</p>
+    <h1 class="hero-mini-titulo">Sumate a la red de socios</h1>
+    <p class="hero-mini-desc">
+      Si pasaste por las aulas de la escuela, sos parte de su historia.
+      Hoy podés seguir siendo parte, ayudando a que crezca.
+    </p>
+  </div>
+</section>
+
+<!-- Por qué sumarse -->
+<section class="seccion" style="background:var(--crema);">
+  <div class="seccion-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
+        ¿Para qué sirve tu aporte?
+      </p>
+      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:24px; line-height:1.25;">
+        Cada socio hace una diferencia real
+      </h2>
+      <div class="beneficio-item">
+        <div class="beneficio-icono">🏫</div>
+        <div>
+          <h3>Infraestructura y mantenimiento</h3>
+          <p>Ayuda a mantener y mejorar el edificio histórico de Carlos Pellegrini 331 para que siga siendo un espacio digno para los chicos.</p>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="beneficio-icono">💻</div>
+        <div>
+          <h3>Equipamiento tecnológico</h3>
+          <p>Contribuye a renovar computadoras, proyectores y otros recursos que complementan el aprendizaje en el aula.</p>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="beneficio-icono">📚</div>
+        <div>
+          <h3>Biblioteca y materiales</h3>
+          <p>La biblioteca escolar tiene más de un siglo de historia. Con tu apoyo, puede seguir creciendo y estar disponible para toda la comunidad.</p>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="beneficio-icono">🎭</div>
+        <div>
+          <h3>Actividades y proyectos</h3>
+          <p>Actos, salidas educativas, talleres de arte y teatro: las actividades que enriquecen la experiencia escolar también necesitan apoyo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Planes -->
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
+        Planes de membresía
+      </p>
+      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:8px; line-height:1.25;">
+        Elegí cómo participar
+      </h2>
+      <p style="font-size:14px; color:var(--texto-suave); margin-bottom:24px; line-height:1.6;">
+        Los montos son orientativos y pueden ajustarse. Lo importante es que te sumes.
+      </p>
+
+      <!--
+        PLANES: definir los valores definitivos con la escuela antes de publicar.
+        Actualmente son montos de referencia.
+      -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+
+        <div class="plan-card">
+          <div class="plan-nombre">Socio adherente</div>
+          <div class="plan-precio">A definir <span>/ mes</span></div>
+          <p class="plan-desc">Para quienes quieren acompañar con lo que pueden.</p>
+          <ul class="plan-beneficios">
+            <li>Participación en la red de ex alumnos</li>
+            <li>Actualizaciones sobre la escuela</li>
+            <li>Reconocimiento en el sitio web</li>
+          </ul>
+          <a href="#formulario" class="btn-primario" style="text-align:center; background:var(--verde); color:#fff;">Me interesa</a>
+        </div>
+
+        <div class="plan-card destacado">
+          <span class="plan-badge">Más elegido</span>
+          <div class="plan-nombre">Socio activo</div>
+          <div class="plan-precio">A definir <span>/ mes</span></div>
+          <p class="plan-desc">Para quienes quieren un compromiso más visible con la institución.</p>
+          <ul class="plan-beneficios">
+            <li>Todo lo del plan adherente</li>
+            <li>Voto en las asambleas de la red</li>
+            <li>Invitación a actos y eventos especiales</li>
+            <li>Certificado digital de ex alumno socio</li>
+          </ul>
+          <a href="#formulario" class="btn-primario" style="text-align:center;">Me interesa</a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-nombre">Socio patrocinador</div>
+          <div class="plan-precio">A definir <span>/ mes</span></div>
+          <p class="plan-desc">Para empresas, comercios o personas que quieren un apoyo mayor.</p>
+          <ul class="plan-beneficios">
+            <li>Todo lo del plan activo</li>
+            <li>Mención en materiales y eventos</li>
+            <li>Logo en el sitio web de la escuela</li>
+            <li>Coordinación directa con la dirección</li>
+          </ul>
+          <a href="#formulario" class="btn-primario" style="text-align:center; background:var(--verde); color:#fff;">Me interesa</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Formulario de registro -->
+<section class="seccion" style="background:var(--dorado-claro);" id="formulario">
+  <div class="seccion-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
+        Primer paso
+      </p>
+      <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:16px; line-height:1.25;">
+        Registrá tu interés
+      </h2>
+      <div class="prose">
+        <p>
+          Completá el formulario y nos ponemos en contacto con vos para contarte
+          cómo funciona la membresía, los medios de pago disponibles y cómo
+          podés empezar a participar.
+        </p>
+        <p>
+          No te compromete a nada: es solo para que podamos armar la red y
+          contactarte con más información.
+        </p>
+      </div>
+      <div style="margin-top:28px; padding:20px; background:rgba(255,255,255,0.6); border-radius:8px;">
+        <p style="font-size:13px; color:var(--texto-suave); line-height:1.7;">
+          <strong style="color:var(--verde-oscuro);">¿Tenés dudas?</strong><br>
+          Escribinos por Instagram:
+          <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+             style="color:var(--verde); font-weight:600; text-decoration:none;">@primariavirgiliobarbalato</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <!--
+      FORMULARIO: actualmente no tiene backend.
+      Opciones para activarlo en GitHub Pages (sitio estático):
+        · Formspree: https://formspree.io — gratis hasta 50 envíos/mes.
+          Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
+        · Netlify Forms: si migrás el hosting a Netlify, funciona sin cambios.
+        · Google Forms embebido: opción más simple, sin configuración.
+    -->
+    <div style="background:var(--blanco); border-radius:8px; padding:36px; border:1px solid rgba(0,0,0,0.07);">
+      <h3 style="font-family:'Lora',serif; font-size:1.2rem; color:var(--verde-oscuro); margin-bottom:20px;">
+        Registrarme como ex alumno socio
+      </h3>
+      <form action="#" method="POST">
+
+        <div class="form-fila">
+          <div class="form-campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-campo">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+          </div>
+        </div>
+
+        <div class="form-campo">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+
+        <div class="form-campo">
+          <label for="telefono">Teléfono / WhatsApp (opcional)</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+54 ...">
+        </div>
+
+        <div class="form-fila">
+          <div class="form-campo">
+            <label for="anio-ingreso">Año aproximado de ingreso</label>
+            <input type="text" id="anio-ingreso" name="anio_ingreso" placeholder="ej. 1990">
+          </div>
+          <div class="form-campo">
+            <label for="anio-egreso">Año aproximado de egreso</label>
+            <input type="text" id="anio-egreso" name="anio_egreso" placeholder="ej. 1995">
+          </div>
+        </div>
+
+        <div class="form-campo">
+          <label for="plan">Plan de interés</label>
+          <select id="plan" name="plan">
+            <option value="">— elegí una opción —</option>
+            <option value="adherente">Socio adherente</option>
+            <option value="activo">Socio activo</option>
+            <option value="patrocinador">Socio patrocinador</option>
+            <option value="no-se">Todavía no lo sé</option>
+          </select>
+        </div>
+
+        <div class="form-campo">
+          <label for="mensaje">¿Algo que quieras agregar? (opcional)</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Un recuerdo, una pregunta, lo que quieras..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primario" style="width:100%; text-align:center; margin-top:4px;">
+          Enviar →
+        </button>
+        <p class="form-nota" style="text-align:center; margin-top:12px;">
+          Tus datos se usan solo para contactarte en el marco de esta campaña.
+        </p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <h3>Escuela Dr. Virgilio Barbalato</h3>
+      <p>Carlos Pellegrini 331, General Levalle, Córdoba (X6132). Nivel primario, gestión estatal. Jornada completa.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="socios.html">Sumate como socio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank">Instagram</a></li>
+        <li><a href="#">General Levalle, Córdoba</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 · Escuela Dr. Virgilio Barbalato · General Levalle, Córdoba</span>
+    <span>Sitio comunitario sin fines de lucro</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     INICIO PREVIEW BADGE
+     Solo visible durante revisión del diseño.
+     Para ocultar: comentar desde aquí hasta FIN PREVIEW BADGE.
+     ============================================================ -->
+<div class="preview-badge">
+  <div class="preview-dot"></div>
+  Sitio en desarrollo · no publicar aún
+</div>
+<!-- FIN PREVIEW BADGE -->
+
+</body>
+</html>
