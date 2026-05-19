@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <!--
+    TÍTULO: cambiar "Fundación 1914–1929" por la década correspondiente
+  -->
+  <title>Fundación 1914–1929 — Archivo · Escuela Dr. Virgilio Barbalato</title>
+  <meta name="description" content="Fotos históricas de la Escuela Dr. Virgilio Barbalato, General Levalle.">
+  <link rel="stylesheet" href="../css/estilos.css">
+  <style>
+    /* ── GRILLA DE FOTOS ──────────────────────────────────── */
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .foto-item {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: var(--blanco);
+      cursor: pointer;
+      position: relative;
+    }
+    .foto-item:hover .foto-overlay { opacity: 1; }
+    .foto-thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .foto-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .foto-item:hover .foto-thumb img { transform: scale(1.04); }
+    .foto-thumb-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--verde-suave), var(--crema-oscura));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: var(--verde-claro);
+    }
+    .foto-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,61,46,0.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .foto-overlay svg { width: 32px; height: 32px; stroke: #fff; }
+    .foto-caption {
+      padding: 10px 12px;
+    }
+    .foto-caption strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+    .foto-caption span {
+      font-size: 11.5px;
+      color: var(--texto-suave);
+    }
+
+    /* ── LIGHTBOX ──────────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 500;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.abierto { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: 900px;
+      max-height: 90vh;
+      width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+    }
+    .lightbox-placeholder {
+      width: 600px; max-width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--verde-oscuro);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; opacity: 0.3;
+    }
+    .lightbox-caption {
+      margin-top: 16px;
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+    }
+    .lightbox-caption strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .lightbox-caption span { font-size: 13px; }
+    .lightbox-cerrar {
+      position: absolute;
+      top: -44px; right: 0;
+      background: none; border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 28px; cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-cerrar:hover { color: #fff; }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-nav.prev { left: 16px; }
+    .lightbox-nav.next { right: 16px; }
+    .lightbox-counter {
+      position: fixed;
+      top: 16px; left: 50%; transform: translateX(-50%);
+      font-size: 12px; color: rgba(255,255,255,0.5);
+    }
+
+    /* ── GISCUS ────────────────────────────────────────────── */
+    .giscus-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .fotos-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de anuncio -->
+<div class="anuncio">
+  🎓 Campaña 2025: sumate como ex alumno socio y ayudá a crecer a la escuela.
+  <a href="../socios.html">Conocé cómo →</a>
+</div>
+
+<!-- Navegación -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-circle">VB</div>
+    <div class="nav-logo-texto">
+      <strong>Escuela Dr. Virgilio Barbalato</strong>
+      <span>General Levalle · Córdoba</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../historia.html">Historia</a></li>
+    <li><a href="index.html" class="activo">Archivo</a></li>
+    <li><a href="../socios.html" class="nav-cta">Sumate como socio</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero mini -->
+<!--
+  CAMBIAR: el eyebrow, título y descripción según la década
+-->
+<section class="hero-mini">
+  <div class="hero-pattern"></div>
+  <div class="hero-acento"></div>
+  <div class="hero-mini-inner">
+    <p class="hero-mini-eyebrow">
+      <a href="index.html" style="color:var(--dorado); text-decoration:none;">← Archivo</a>
+      &nbsp;·&nbsp; Fotos históricas
+    </p>
+    <h1 class="hero-mini-titulo">Fundación · 1914–1929</h1>
+    <p class="hero-mini-desc">
+      Los primeros años de la escuela. Fotos del edificio original, los primeros maestros y alumnos.
+    </p>
+  </div>
+</section>
+
+<!-- Grilla de fotos -->
+<section class="seccion" style="background:var(--crema);">
+  <div class="seccion-inner">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
+      <h2 class="seccion-titulo">Fotos de la sección</h2>
+      <!--
+        ACTUALIZAR: cambiar el número de fotos cuando agregues nuevas
+      -->
+      <span style="font-size:13px; color:var(--texto-suave);">0 fotos</span>
+    </div>
+
+    <!--
+      ══════════════════════════════════════════════════════════
+      GRILLA DE FOTOS — CÓMO AGREGAR FOTOS
+      ══════════════════════════════════════════════════════════
+      Cada foto sigue esta estructura:
+
+      <div class="foto-item" onclick="abrirLightbox(N)" data-titulo="Título" data-año="Año">
+        <div class="foto-thumb">
+          <img src="../img/archivo/nombre-foto.jpg" alt="descripción">
+        </div>
+        <div class="foto-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+          </svg>
+        </div>
+        <div class="foto-caption">
+          <strong>Título de la foto</strong>
+          <span>Año · descripción</span>
+        </div>
+      </div>
+
+      - N es el índice (0, 1, 2...) para el lightbox
+      - Guardá las fotos en img/archivo/
+      - Actualizá el array "fotos" en el script al final
+      ══════════════════════════════════════════════════════════
+    -->
+
+    <div class="fotos-grid" id="fotosGrid">
+
+      <!-- Estado vacío — quitar cuando haya fotos -->
+      <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--texto-suave);">
+        <div style="font-size:48px; margin-bottom:16px; opacity:0.3;">📷</div>
+        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:8px;">
+          Fotos en camino
+        </p>
+        <p style="font-size:14px; line-height:1.7; max-width:400px; margin:0 auto;">
+          Estamos digitalizando el material de esta época.
+          Si tenés fotos para sumar, escribinos por Instagram.
+        </p>
+        <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+           style="display:inline-block; margin-top:20px; color:var(--verde); font-weight:600;
+                  font-size:14px; text-decoration:none; border-bottom:1.5px solid var(--verde);">
+          @primariavirgiliobarbalato →
+        </a>
+      </div>
+
+      <!--
+        EJEMPLO de foto (descomentar cuando tengas imágenes reales):
+
+        <div class="foto-item" onclick="abrirLightbox(0)" data-titulo="Acto de inauguración" data-año="1929">
+          <div class="foto-thumb">
+            <img src="../img/archivo/fundacion-inauguracion.jpg" alt="Acto de inauguración del edificio, 1929">
+          </div>
+          <div class="foto-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+            </svg>
+          </div>
+          <div class="foto-caption">
+            <strong>Acto de inauguración del edificio</strong>
+            <span>1929</span>
+          </div>
+        </div>
+      -->
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="cerrarLightbox(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()" aria-label="Cerrar">×</button>
+    <div id="lightboxContenido"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <button class="lightbox-nav prev" onclick="navLightbox(-1, event)" aria-label="Anterior">‹</button>
+  <button class="lightbox-nav next" onclick="navLightbox(1, event)" aria-label="Siguiente">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- Comentarios con Giscus -->
+<section class="seccion" style="background:var(--crema-oscura);">
+  <div class="seccion-inner">
+    <h2 class="seccion-titulo" style="margin-bottom:8px;">Comentarios</h2>
+    <p style="font-size:14px; color:var(--texto-suave); margin-bottom:32px;">
+      ¿Reconocés a alguien en las fotos? ¿Tenés más información sobre esta época?
+      Dejá tu comentario. Se necesita cuenta de GitHub (gratuita).
+    </p>
+    <div class="giscus-wrapper">
+      <!--
+        ══════════════════════════════════════════════════════
+        GISCUS — sistema de comentarios
+        Este snippet es el mismo en todas las páginas del archivo.
+        Los comentarios se asocian automáticamente a cada URL.
+        ══════════════════════════════════════════════════════
+      -->
+      <script src="https://giscus.app/client.js"
+        data-repo="Ppantaleo/escuelaVirgilioBarbalato"
+        data-repo-id="R_kgDOSfhfXw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSfhfX84C9Y14"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <h3>Escuela Dr. Virgilio Barbalato</h3>
+      <p>Carlos Pellegrini 331, General Levalle, Córdoba (X6132). Nivel primario, gestión estatal. Jornada completa.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../historia.html">Historia</a></li>
+        <li><a href="index.html">Archivo</a></li>
+        <li><a href="../socios.html">Sumate como socio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank">Instagram</a></li>
+        <li><a href="#">General Levalle, Córdoba</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 · Escuela Dr. Virgilio Barbalato · General Levalle, Córdoba</span>
+    <span>Sitio comunitario sin fines de lucro</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     INICIO PREVIEW BADGE
+     Para ocultar: comentar desde aquí hasta FIN PREVIEW BADGE.
+     ============================================================ -->
+<div class="preview-badge">
+  <div class="preview-dot"></div>
+  Sitio en desarrollo · no publicar aún
+</div>
+<!-- FIN PREVIEW BADGE -->
+
+<script>
+  // ── Navbar toggle ─────────────────────────────────────────
+  document.getElementById('navToggle').addEventListener('click', function() {
+    this.classList.toggle('abierto');
+    document.querySelector('.nav-links').classList.toggle('abierto');
+  });
+
+  // ── Lightbox ──────────────────────────────────────────────
+  //
+  // ACTUALIZAR este array cuando agregues fotos a la grilla.
+  // Cada objeto debe tener: src, titulo, año.
+  // El orden debe coincidir con el onclick="abrirLightbox(N)" de cada foto.
+  //
+  const fotos = [
+    // Ejemplo:
+    // { src: '../img/archivo/fundacion-inauguracion.jpg', titulo: 'Acto de inauguración', año: '1929' },
+    // { src: '../img/archivo/fundacion-alumnos.jpg',     titulo: 'Primeros alumnos',      año: 'c. 1920' },
+  ];
+
+  let fotoActual = 0;
+  const lightbox = document.getElementById('lightbox');
+
+  function abrirLightbox(n) {
+    if (!fotos.length) return;
+    fotoActual = n;
+    mostrarFoto();
+    lightbox.classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function mostrarFoto() {
+    const f = fotos[fotoActual];
+    document.getElementById('lightboxContenido').innerHTML =
+      `<img class="lightbox-img" src="${f.src}" alt="${f.titulo}">`;
+    document.getElementById('lightboxCaption').innerHTML =
+      `<strong>${f.titulo}</strong><span>${f.año}</span>`;
+    document.getElementById('lightboxCounter').textContent =
+      `${fotoActual + 1} / ${fotos.length}`;
+  }
+
+  function navLightbox(dir, e) {
+    if (e) e.stopPropagation();
+    fotoActual = (fotoActual + dir + fotos.length) % fotos.length;
+    mostrarFoto();
+  }
+
+  function cerrarLightbox(e) {
+    if (e && e.target !== lightbox && !e.target.classList.contains('lightbox-cerrar')) return;
+    lightbox.classList.remove('abierto');
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar con Escape / navegar con flechas del teclado
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('abierto')) return;
+    if (e.key === 'Escape')      cerrarLightbox({target: lightbox});
+    if (e.key === 'ArrowLeft')   navLightbox(-1);
+    if (e.key === 'ArrowRight')  navLightbox(1);
+  });
+</script>
+
+</body>
+</html>

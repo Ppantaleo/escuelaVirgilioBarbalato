@@ -733,3 +733,218 @@ footer {
   /* campaña home: padding menor */
   .campana { padding: 52px 24px; }
 }
+
+ /* ── ARCHIVO ─────────────────────────────────────────── */
+    .carrusel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--verde-oscuro);
+      aspect-ratio: 16/7;
+      max-height: 480px;
+    }
+    .carrusel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+      height: 100%;
+    }
+    .carrusel-slide {
+      min-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .carrusel-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+    }
+    .carrusel-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-claro) 100%);
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+    }
+    .carrusel-placeholder span { font-size: 48px; opacity: 0.3; }
+    .carrusel-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 32px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      color: #fff;
+    }
+    .carrusel-caption strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .carrusel-caption span {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.65);
+    }
+    .carrusel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+      backdrop-filter: blur(4px);
+    }
+    .carrusel-btn:hover { background: rgba(255,255,255,0.3); }
+    .carrusel-btn.prev { left: 16px; }
+    .carrusel-btn.next { right: 16px; }
+    .carrusel-dots {
+      position: absolute;
+      bottom: 16px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 6px;
+      z-index: 2;
+    }
+    .carrusel-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carrusel-dot.activo {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    /* ── GRILLA DE DÉCADAS ────────────────────────────────── */
+    .decadas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .decada-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      background: var(--blanco);
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .decada-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .decada-card.proxima {
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .decada-thumb {
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+    }
+    .decada-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .decada-card:hover .decada-thumb img { transform: scale(1.04); }
+    .decada-thumb-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--verde-suave) 0%, var(--crema-oscura) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: var(--verde-claro);
+    }
+    .decada-info {
+      padding: 14px 16px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .decada-label {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--verde-oscuro);
+      margin-bottom: 4px;
+    }
+    .decada-meta {
+      font-size: 12px;
+      color: var(--texto-suave);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .decada-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+    .decada-badge.disponible {
+      background: var(--verde-suave);
+      color: var(--verde);
+    }
+    .decada-badge.proxima {
+      background: var(--crema-oscura);
+      color: var(--texto-suave);
+    }
+
+    /* ── GRILLA GENERAL DE FOTOS ──────────────────────────── */
+    .foto-general { display: flex; flex-direction: column; gap: 0; }
+    .foto-general-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 6px;
+      background: var(--crema-oscura);
+    }
+    .foto-general-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .foto-general:hover .foto-general-thumb img { transform: scale(1.05); }
+    .foto-general-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,61,46,0.7) 0%, transparent 60%);
+      display: flex; align-items: flex-end; padding: 10px;
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .foto-general:hover .foto-general-overlay { opacity: 1; }
+    .foto-general-era {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--dorado);
+      background: rgba(0,0,0,0.3);
+      padding: 3px 8px; border-radius: 3px;
+    }
+    .foto-general-caption {
+      font-size: 12px; color: var(--texto-suave);
+      margin-top: 7px; line-height: 1.4;
+      padding: 0 2px;
+    }
+
+    @media (max-width: 768px) {
+      .decadas-grid { grid-template-columns: 1fr 1fr; }
+      .carrusel { aspect-ratio: 4/3; max-height: 300px; }
+      [style*="grid-template-columns:repeat(4,1fr)"],
+      [style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      [style*="grid-template-columns:repeat(3,1fr)"] {
+        grid-template-columns: 1fr !important;
+      }
+    }

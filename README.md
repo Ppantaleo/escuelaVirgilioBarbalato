@@ -92,3 +92,54 @@ src="https://www.youtube.com/embed/ID_DEL_VIDEO"
 ---
 
 *Sitio construido como sitio estático para GitHub Pages. Sin dependencias de servidor.*
+
+---
+
+## Gestión del archivo fotográfico
+
+### Estructura de carpetas
+
+```
+/
+├── archivo/
+│   ├── index.html              ← página principal del archivo
+│   ├── decada-ejemplo.html     ← PLANTILLA — copiar para cada nueva sección
+│   ├── decada-1930.html        ← (crear cuando haya fotos)
+│   ├── decada-1940.html        ← (crear cuando haya fotos)
+│   └── ...
+└── img/
+    └── archivo/
+        ├── portada-fundacion.jpg   ← portadas de las cards de décadas
+        ├── portada-1930.jpg
+        ├── fundacion-foto1.jpg     ← fotos de cada sección
+        └── ...
+```
+
+### Agregar una nueva sección/década
+
+1. Copiar `archivo/decada-ejemplo.html` → renombrar a `archivo/decada-1980.html`
+2. Editar en el nuevo archivo:
+   - `<title>`: cambiar "Fundación 1914–1929" por "Década de 1980"
+   - Hero: cambiar eyebrow, título y descripción
+   - Contador de fotos
+3. Subir las fotos a `img/archivo/` (nombres descriptivos sin espacios, ej: `1980-acto-egresados.jpg`)
+4. En el nuevo archivo, reemplazar el bloque "estado vacío" por las fotos usando la estructura indicada en el comentario
+5. Actualizar el array `fotos` en el `<script>` al pie de la página
+6. En `archivo/index.html`: buscar la card de esa década y:
+   - Cambiar `class="decada-card proxima"` por `class="decada-card"`
+   - Cambiar `href="#"` por `href="decada-1980.html"`
+   - Reemplazar el placeholder por `<img src="../img/archivo/portada-1980.jpg">`
+   - Actualizar el badge a `class="decada-badge disponible"` y texto a "X fotos · Ver →"
+
+### Agregar fotos al carrusel destacado (archivo/index.html)
+
+Buscar el comentario "CARRUSEL — CÓMO AGREGAR FOTOS DESTACADAS" y seguir
+la estructura indicada. Actualizar también el contador de fotos en el span.
+
+### Recomendaciones para las fotos
+
+- Formato: JPG, calidad 80-85% (equilibrio tamaño/calidad)
+- Ancho máximo: 1600px (el lightbox no necesita más)
+- Portadas de cards: recortar a proporción 4:3 antes de subir
+- Nombres: sin espacios, sin acentos. Ej: `1970-foto-grupo-6grado.jpg`
+- Organizar en subcarpetas si la cantidad crece: `img/archivo/1970/`, etc.
