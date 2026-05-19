@@ -311,103 +311,129 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     GRILLA DE FOTOS
-     ══════════════════════════════════════════════════════════
-     Cómo agregar una foto — solo HTML, sin tocar el JS:
-
-     VARIANTE A — título + año + descripción (botón ⓘ):
-     <div class="foto-general"
-          data-src="../img/archivo/foto.jpg"
-          data-titulo="Acto de egresados"
-          data-año="1965"
-          data-desc="Descripción opcional visible en el lightbox."
-          onclick="abrirLightbox(this)" style="cursor:pointer;">
-       <div class="foto-general-thumb">
-         <img src="../img/archivo/foto.jpg" alt="Acto de egresados · 1965">
-         <div class="foto-meta">
-           <span class="foto-meta-anio">1965</span>
-           <strong class="foto-meta-titulo">Acto de egresados</strong>
-         </div>
-         <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
-         <div class="foto-desc-panel">Descripción opcional visible al hacer clic en ⓘ.</div>
-       </div>
-     </div>
-
-     VARIANTE B — solo título + año (sin botón ⓘ):
-     <div class="foto-general"
-          data-src="../img/archivo/foto.jpg"
-          data-titulo="Recreo en el patio"
-          data-año="c. 1970"
-          onclick="abrirLightbox(this)" style="cursor:pointer;">
-       <div class="foto-general-thumb">
-         <img src="../img/archivo/foto.jpg" alt="Recreo en el patio">
-         <div class="foto-meta">
-           <span class="foto-meta-anio">c. 1970</span>
-           <strong class="foto-meta-titulo">Recreo en el patio</strong>
-         </div>
-       </div>
-     </div>
-
-     VARIANTE C — sin metadatos (foto limpia):
-     <div class="foto-general"
-          data-src="../img/archivo/foto.jpg"
-          onclick="abrirLightbox(this)" style="cursor:pointer;">
-       <div class="foto-general-thumb">
-         <img src="../img/archivo/foto.jpg" alt="Foto del archivo">
-       </div>
-     </div>
-
-     Guardar fotos en: img/archivo/
-     Quitar el bloque "Fotos en camino" cuando haya al menos una foto real.
-     ══════════════════════════════════════════════════════════ -->
 <section class="seccion" style="background:var(--crema);">
   <div class="seccion-inner">
     <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
       <h2 class="seccion-titulo">Todas las fotos</h2>
-      <!-- ACTUALIZAR: cambiar por el total real cuando haya imágenes -->
-      <span style="font-size:13px; color:var(--texto-suave);">0 fotos · en construcción</span>
+      <!-- ACTUALIZAR: cambiar el número cuando agregues más fotos -->
+      <span style="font-size:13px; color:var(--texto-suave);">4 fotos</span>
     </div>
+
+    <!--
+      ══════════════════════════════════════════════════════════
+      CÓMO AGREGAR UNA FOTO NUEVA
+      ══════════════════════════════════════════════════════════
+      Copiá uno de los tres modelos de abajo según los datos que tengas.
+      Guardá la imagen en img/archivo/ y actualizá el contador de arriba.
+
+      VARIANTE A — título + año + descripción (muestra botón ⓘ):
+      ─────────────────────────────────────────────────────────
+      <div class="foto-general"
+           data-src="../img/archivo/NOMBRE.png"
+           data-titulo="Título de la foto"
+           data-año="Año o época"
+           data-desc="Descripción que aparece en el botón ⓘ y en el lightbox."
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/NOMBRE.png" alt="Título de la foto · Año">
+          <div class="foto-meta">
+            <span class="foto-meta-anio">Año o época</span>
+            <strong class="foto-meta-titulo">Título de la foto</strong>
+          </div>
+          <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+          <div class="foto-desc-panel">Descripción que aparece en el botón ⓘ y en el lightbox.</div>
+        </div>
+      </div>
+
+      VARIANTE B — solo título + año (sin botón ⓘ):
+      ─────────────────────────────────────────────────────────
+      <div class="foto-general"
+           data-src="../img/archivo/NOMBRE.png"
+           data-titulo="Título de la foto"
+           data-año="Año o época"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/NOMBRE.png" alt="Título de la foto · Año">
+          <div class="foto-meta">
+            <span class="foto-meta-anio">Año o época</span>
+            <strong class="foto-meta-titulo">Título de la foto</strong>
+          </div>
+        </div>
+      </div>
+
+      VARIANTE C — sin metadatos (foto limpia):
+      ─────────────────────────────────────────────────────────
+      <div class="foto-general"
+           data-src="../img/archivo/NOMBRE.png"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/NOMBRE.png" alt="Foto del archivo">
+        </div>
+      </div>
+      ══════════════════════════════════════════════════════════
+    -->
 
     <div class="fotos-grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
 
-    <div class="foto-general"
-          data-src="../img/archivo/3.png"
-          data-titulo="Acto de egresados"
-          data-año="1990s"
-          data-desc="Descripción opcional visible en el lightbox."
-          onclick="abrirLightbox(this)" style="cursor:pointer;">
-       <div class="foto-general-thumb">
-         <img src="../img/archivo/3.png" alt="Visita del Gobernador Eduardo Angeloz">
-         <div class="foto-meta">
-           <span class="foto-meta-anio">Década de 1990</span>
-           <strong class="foto-meta-titulo">Visita del Gobernador Eduardo Angeloz</strong>
-         </div>
-         <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
-         <div class="foto-desc-panel">Visita del Gobernador Eduardo Angeloz ⓘ.</div>
-       </div>
-     </div>
+      <!-- Variante A: título + año + descripción -->
+      <div class="foto-general"
+           data-src="../img/archivo/1.png"
+           data-titulo="Acto de inauguración"
+           data-año="1929"
+           data-desc="Inauguración del edificio de Carlos Pellegrini 331."
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/1.png" alt="Acto de inauguración · 1929">
+          <div class="foto-meta">
+            <span class="foto-meta-anio">1929</span>
+            <strong class="foto-meta-titulo">Acto de inauguración</strong>
+          </div>
+          <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+          <div class="foto-desc-panel">Inauguración del edificio de Carlos Pellegrini 331.</div>
+        </div>
+      </div>
 
-      <!--
-        EJEMPLO con img/archivo/1.png — variante A (todos los metadatos):
-
-        <div class="foto-general"
-             data-src="../img/archivo/1.png"
-             data-titulo="Acto de egresados"
-             data-año="1965"
-             data-desc="Séptimo grado, generación 1965. Foto cedida por la familia Rodríguez."
-             onclick="abrirLightbox(this)" style="cursor:pointer;">
-          <div class="foto-general-thumb">
-            <img src="../img/archivo/1.png" alt="Acto de egresados · 1965">
-            <div class="foto-meta">
-              <span class="foto-meta-anio">1965</span>
-              <strong class="foto-meta-titulo">Acto de egresados</strong>
-            </div>
-            <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
-            <div class="foto-desc-panel">Séptimo grado, generación 1965. Foto cedida por la familia Rodríguez.</div>
+      <!-- Variante B: solo título + año -->
+      <div class="foto-general"
+           data-src="../img/archivo/2.png"
+           data-titulo="Primeros alumnos"
+           data-año="c. 1920"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/2.png" alt="Primeros alumnos · c. 1920">
+          <div class="foto-meta">
+            <span class="foto-meta-anio">c. 1920</span>
+            <strong class="foto-meta-titulo">Primeros alumnos</strong>
           </div>
         </div>
-      -->
+      </div>
+
+      <!-- Variante A: título + año + descripción -->
+      <div class="foto-general"
+           data-src="../img/archivo/3.png"
+           data-titulo="Visita del Gobernador Eduardo Angeloz"
+           data-año="Década de 1990"
+           data-desc="Visita del Gobernador Eduardo Angeloz a la escuela."
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/3.png" alt="Visita del Gobernador Eduardo Angeloz">
+          <div class="foto-meta">
+            <span class="foto-meta-anio">Década de 1990</span>
+            <strong class="foto-meta-titulo">Visita del Gobernador Eduardo Angeloz</strong>
+          </div>
+          <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+          <div class="foto-desc-panel">Visita del Gobernador Eduardo Angeloz a la escuela.</div>
+        </div>
+      </div>
+
+      <!-- Variante C: sin metadatos -->
+      <div class="foto-general"
+           data-src="../img/archivo/4.png"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/4.png" alt="Foto del archivo">
+        </div>
+      </div>
 
     </div>
   </div>
