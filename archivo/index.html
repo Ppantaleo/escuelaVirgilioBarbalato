@@ -371,16 +371,22 @@
 
     <div class="fotos-grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
 
-      <!-- ── ESTADO VACÍO: quitar este bloque cuando haya fotos ── -->
-      <div style="grid-column:1/-1; text-align:center; padding:52px 20px;
-                  background:var(--blanco); border-radius:8px; border:1.5px dashed var(--crema-oscura);">
-        <div style="font-size:44px; margin-bottom:14px; opacity:0.25;">🗂️</div>
-        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:6px;">Fotos en camino</p>
-        <p style="font-size:13.5px; color:var(--texto-suave); line-height:1.7; max-width:380px; margin:0 auto;">
-          Estamos digitalizando el material histórico. Las fotos irán apareciendo a medida que las tengamos listas.
-        </p>
-      </div>
-      <!-- ── FIN ESTADO VACÍO ── -->
+    <div class="foto-general"
+          data-src="../img/archivo/3.png"
+          data-titulo="Acto de egresados"
+          data-año="1990s"
+          data-desc="Descripción opcional visible en el lightbox."
+          onclick="abrirLightbox(this)" style="cursor:pointer;">
+       <div class="foto-general-thumb">
+         <img src="../img/archivo/3.png" alt="Visita del Gobernador Eduardo Angeloz">
+         <div class="foto-meta">
+           <span class="foto-meta-anio">Década de 1990</span>
+           <strong class="foto-meta-titulo">Visita del Gobernador Eduardo Angeloz</strong>
+         </div>
+         <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+         <div class="foto-desc-panel">Visita del Gobernador Eduardo Angeloz ⓘ.</div>
+       </div>
+     </div>
 
       <!--
         EJEMPLO con img/archivo/1.png — variante A (todos los metadatos):
