@@ -4,9 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <title>Archivo fotográfico — Escuela Dr. Virgilio Barbalato</title>
-  <meta name="description" content="Archivo fotográfico histórico del Centro Educativo Dr. Virgilio Barbalato, General Levalle, Córdoba.">
+  <!--
+    TÍTULO: cambiar "Fundación 1914–1929" por la década correspondiente
+  -->
+  <title>Fundación 1914–1929 — Archivo · Escuela Dr. Virgilio Barbalato</title>
+  <meta name="description" content="Fotos históricas de la Escuela Dr. Virgilio Barbalato, General Levalle.">
   <link rel="stylesheet" href="../css/estilos.css">
+  <style>
+    /* ── GRILLA DE FOTOS ──────────────────────────────────── */
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .foto-item {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: var(--blanco);
+      cursor: pointer;
+      position: relative;
+    }
+    .foto-item:hover .foto-overlay { opacity: 1; }
+    .foto-thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .foto-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .foto-item:hover .foto-thumb img { transform: scale(1.04); }
+    .foto-thumb-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--verde-suave), var(--crema-oscura));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: var(--verde-claro);
+    }
+    .foto-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,61,46,0.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .foto-overlay svg { width: 32px; height: 32px; stroke: #fff; }
+    .foto-caption {
+      padding: 10px 12px;
+    }
+    .foto-caption strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+    .foto-caption span {
+      font-size: 11.5px;
+      color: var(--texto-suave);
+    }
+
+    /* ── LIGHTBOX ──────────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 500;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.abierto { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: 900px;
+      max-height: 90vh;
+      width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+    }
+    .lightbox-placeholder {
+      width: 600px; max-width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--verde-oscuro);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; opacity: 0.3;
+    }
+    .lightbox-caption {
+      margin-top: 16px;
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+    }
+    .lightbox-caption strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .lightbox-caption span { font-size: 13px; }
+    .lightbox-cerrar {
+      position: absolute;
+      top: -44px; right: 0;
+      background: none; border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 28px; cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-cerrar:hover { color: #fff; }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-nav.prev { left: 16px; }
+    .lightbox-nav.next { right: 16px; }
+    .lightbox-counter {
+      position: fixed;
+      top: 16px; left: 50%; transform: translateX(-50%);
+      font-size: 12px; color: rgba(255,255,255,0.5);
+    }
+
+    /* ── GISCUS ────────────────────────────────────────────── */
+    .giscus-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .fotos-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -37,223 +184,97 @@
 </nav>
 
 <!-- Hero mini -->
+<!--
+  CAMBIAR: el eyebrow, título y descripción según la década
+-->
 <section class="hero-mini">
   <div class="hero-pattern"></div>
   <div class="hero-acento"></div>
   <div class="hero-mini-inner">
-    <p class="hero-mini-eyebrow">Memoria visual · 1914 — hoy</p>
-    <h1 class="hero-mini-titulo">Archivo fotográfico</h1>
+    <p class="hero-mini-eyebrow">
+      <a href="index.html" style="color:var(--dorado); text-decoration:none;">← Archivo</a>
+      &nbsp;·&nbsp; Fotos históricas
+    </p>
+    <h1 class="hero-mini-titulo">Fundación · 1914–1929</h1>
     <p class="hero-mini-desc">
-      Fotos digitalizadas de la historia de la escuela y la comunidad de General Levalle.
-      Organizadas por década. Si tenés fotos para sumar, escribinos.
+      Los primeros años de la escuela. Fotos del edificio original, los primeros maestros y alumnos.
     </p>
   </div>
 </section>
 
-<!-- Carrusel de fotos destacadas -->
-<section class="seccion" style="background:var(--verde-oscuro); padding-bottom:0;">
-  <div class="seccion-inner">
-    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px;">
-      <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff;">
-        Fotos destacadas
-      </h2>
-      <span style="font-size:12px; color:rgba(255,255,255,0.4);">
-        <!--
-          INSTRUCCIÓN: este texto se actualiza solo con las fotos del carrusel.
-          Ver README para agregar nuevas fotos destacadas.
-        -->
-        0 fotos · próximamente
-      </span>
-    </div>
-
-    <div class="carrusel" id="carrusel">
-      <div class="carrusel-track" id="carruselTrack">
-
-        <!--
-          ══════════════════════════════════════════════════════
-          CARRUSEL — CÓMO AGREGAR FOTOS DESTACADAS
-          ══════════════════════════════════════════════════════
-          Cada slide sigue esta estructura:
-
-          <div class="carrusel-slide">
-            <img src="../img/archivo/foto-nombre.jpg" alt="descripción">
-            <div class="carrusel-caption">
-              <strong>Título de la foto</strong>
-              <span>Año · contexto opcional</span>
-            </div>
-          </div>
-
-          Guardá las fotos en: img/archivo/
-          Reemplazá los slides placeholder de abajo.
-          ══════════════════════════════════════════════════════
-        -->
-
-        <!-- Slide placeholder 1 -->
-        <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>📷</span>
-            <p>Las fotos destacadas aparecerán aquí</p>
-          </div>
-          <div class="carrusel-caption">
-            <strong>Próximamente · archivo en construcción</strong>
-            <span>Estamos digitalizando fotos históricas</span>
-          </div>
-        </div>
-
-        <!-- Slide placeholder 2 -->
-        <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>🏫</span>
-            <p>Fotos del edificio, actos y egresados</p>
-          </div>
-          <div class="carrusel-caption">
-            <strong>Más de 110 años de historia en imágenes</strong>
-            <span>Si tenés fotos para donar al archivo, escribinos</span>
-          </div>
-        </div>
-
-        <!-- Slide placeholder 3 -->
-        <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>👥</span>
-            <p>Fotos de alumnos y docentes</p>
-          </div>
-          <div class="carrusel-caption">
-            <strong>¿Aparecés en alguna foto?</strong>
-            <span>Dejá un comentario en la sección correspondiente</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Controles -->
-      <button class="carrusel-btn prev" onclick="moverCarrusel(-1)" aria-label="Anterior">‹</button>
-      <button class="carrusel-btn next" onclick="moverCarrusel(1)" aria-label="Siguiente">›</button>
-      <div class="carrusel-dots" id="carruselDots"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 3 secciones del archivo -->
-<section class="seccion" style="background:var(--verde-oscuro);">
-  <div class="seccion-inner">
-    <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:10px;">
-      Explorar por época
-    </h2>
-    <p style="font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:32px; max-width:520px;">
-      Hacé clic en una sección para ver las fotos y dejar comentarios.
-    </p>
-
-    <!--
-      ══════════════════════════════════════════════════════════
-      SECCIONES DEL ARCHIVO — CÓMO GESTIONAR
-      ══════════════════════════════════════════════════════════
-      Hay 3 cards. Para activar una cuando tenga fotos:
-        1. Quitar class="era-card proxima" → class="era-card"
-        2. Cambiar href="#" por href="decada-ejemplo.html" (o el archivo correspondiente)
-        3. Reemplazar el placeholder por <img src="../img/archivo/portada-X.jpg">
-        4. Actualizar el badge y el contador de fotos
-      ══════════════════════════════════════════════════════════
-    -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-
-      <!-- Sección 1: activa -->
-      <a href="decada-ejemplo.html" class="decada-card" style="border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.05);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <!--
-            Reemplazar por: <img src="../img/archivo/portada-primeros-años.jpg" alt="...">
-          -->
-          <div class="decada-thumb-placeholder" style="background:linear-gradient(135deg,#1a3d2e,#3d7a5e);">🏛️</div>
-        </div>
-        <div class="decada-info" style="background:rgba(255,255,255,0.05);">
-          <div class="decada-label" style="color:#fff;">Los primeros años</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.5);">1914 — 1960</div>
-          <span class="decada-badge disponible" style="margin-top:10px;">Ver fotos →</span>
-        </div>
-      </a>
-
-      <!-- Sección 2: próxima -->
-      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
-        </div>
-        <div class="decada-info" style="background:transparent;">
-          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Mediados de siglo</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1960 — 1990</div>
-          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
-        </div>
-      </a>
-
-      <!-- Sección 3: próxima -->
-      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
-        </div>
-        <div class="decada-info" style="background:transparent;">
-          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Época reciente</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1990 — hoy</div>
-          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- Grilla general de fotos -->
+<!-- Grilla de fotos -->
 <section class="seccion" style="background:var(--crema);">
   <div class="seccion-inner">
     <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
-      <h2 class="seccion-titulo">Todas las fotos</h2>
+      <h2 class="seccion-titulo">Fotos de la sección</h2>
       <!--
-        ACTUALIZAR: cambiar "0 fotos" por el total real cuando haya imágenes
+        ACTUALIZAR: cambiar el número de fotos cuando agregues nuevas
       -->
-      <span style="font-size:13px; color:var(--texto-suave);">0 fotos · en construcción</span>
+      <span style="font-size:13px; color:var(--texto-suave);">0 fotos</span>
     </div>
 
     <!--
       ══════════════════════════════════════════════════════════
-      GRILLA GENERAL — CÓMO AGREGAR FOTOS
+      GRILLA DE FOTOS — CÓMO AGREGAR FOTOS
       ══════════════════════════════════════════════════════════
-      Reemplazar cada bloque placeholder por:
+      Cada foto sigue esta estructura:
 
-      <div class="foto-general">
-        <div class="foto-general-thumb">
+      <div class="foto-item" onclick="abrirLightbox(N)" data-titulo="Título" data-año="Año">
+        <div class="foto-thumb">
           <img src="../img/archivo/nombre-foto.jpg" alt="descripción">
-          <div class="foto-general-overlay">
-            <span class="foto-general-era">Los primeros años</span>
-          </div>
         </div>
-        <p class="foto-general-caption">Descripción · Año</p>
+        <div class="foto-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+          </svg>
+        </div>
+        <div class="foto-caption">
+          <strong>Título de la foto</strong>
+          <span>Año · descripción</span>
+        </div>
       </div>
 
-      - Quitar el estado vacío (el div con "Fotos en camino") cuando haya al menos una foto
+      - N es el índice (0, 1, 2...) para el lightbox
+      - Guardá las fotos en img/archivo/
+      - Actualizá el array "fotos" en el script al final
       ══════════════════════════════════════════════════════════
     -->
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
 
-      <!-- Estado vacío: quitar cuando haya fotos -->
-      <div style="grid-column:1/-1; text-align:center; padding:52px 20px; color:var(--texto-suave);
-                  background:var(--blanco); border-radius:8px; border:1.5px dashed var(--crema-oscura);">
-        <div style="font-size:44px; margin-bottom:14px; opacity:0.25;">🗂️</div>
-        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:6px;">
+    <div class="fotos-grid" id="fotosGrid">
+
+      <!-- Estado vacío — quitar cuando haya fotos -->
+      <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--texto-suave);">
+        <div style="font-size:48px; margin-bottom:16px; opacity:0.3;">📷</div>
+        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:8px;">
           Fotos en camino
         </p>
-        <p style="font-size:13.5px; line-height:1.7; max-width:380px; margin:0 auto;">
-          Estamos digitalizando el material histórico. Las fotos irán apareciendo
-          a medida que las tengamos listas.
+        <p style="font-size:14px; line-height:1.7; max-width:400px; margin:0 auto;">
+          Estamos digitalizando el material de esta época.
+          Si tenés fotos para sumar, escribinos por Instagram.
         </p>
+        <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+           style="display:inline-block; margin-top:20px; color:var(--verde); font-weight:600;
+                  font-size:14px; text-decoration:none; border-bottom:1.5px solid var(--verde);">
+          @primariavirgiliobarbalato →
+        </a>
       </div>
 
       <!--
-        PLACEHOLDERS — descomentar y reemplazar con fotos reales:
+        EJEMPLO de foto (descomentar cuando tengas imágenes reales):
 
-        <div class="foto-general">
-          <div class="foto-general-thumb">
-            <img src="../img/archivo/foto-01.jpg" alt="...">
-            <div class="foto-general-overlay"><span class="foto-general-era">Los primeros años</span></div>
+        <div class="foto-item" onclick="abrirLightbox(0)" data-titulo="Acto de inauguración" data-año="1929">
+          <div class="foto-thumb">
+            <img src="../img/archivo/fundacion-inauguracion.jpg" alt="Acto de inauguración del edificio, 1929">
           </div>
-          <p class="foto-general-caption">Descripción · Año</p>
+          <div class="foto-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+            </svg>
+          </div>
+          <div class="foto-caption">
+            <strong>Acto de inauguración del edificio</strong>
+            <span>1929</span>
+          </div>
         </div>
       -->
 
@@ -261,24 +282,50 @@
   </div>
 </section>
 
-<!-- Invitación a aportar fotos -->
-<section style="background:var(--dorado-claro); padding:64px 40px; text-align:center;">
-  <div style="max-width:560px; margin:0 auto;">
-    <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
-      Ayudanos a completar el archivo
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="cerrarLightbox(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()" aria-label="Cerrar">×</button>
+    <div id="lightboxContenido"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <button class="lightbox-nav prev" onclick="navLightbox(-1, event)" aria-label="Anterior">‹</button>
+  <button class="lightbox-nav next" onclick="navLightbox(1, event)" aria-label="Siguiente">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- Comentarios con Giscus -->
+<section class="seccion" style="background:var(--crema-oscura);">
+  <div class="seccion-inner">
+    <h2 class="seccion-titulo" style="margin-bottom:8px;">Comentarios</h2>
+    <p style="font-size:14px; color:var(--texto-suave); margin-bottom:32px;">
+      ¿Reconocés a alguien en las fotos? ¿Tenés más información sobre esta época?
+      Dejá tu comentario. Se necesita cuenta de GitHub (gratuita).
     </p>
-    <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:16px; line-height:1.3;">
-      ¿Tenés fotos de la escuela?
-    </h2>
-    <p style="font-size:15.5px; color:var(--texto-suave); line-height:1.8; margin-bottom:28px;">
-      Si tenés fotos en papel o digitalizadas de cualquier época,
-      nos encantaría recibirlas para sumarlas al archivo.
-      Podés enviárnoslas por Instagram.
-    </p>
-    <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
-       class="btn-primario" style="background:var(--verde); color:#fff;">
-      Enviar fotos por Instagram →
-    </a>
+    <div class="giscus-wrapper">
+      <!--
+        ══════════════════════════════════════════════════════
+        GISCUS — sistema de comentarios
+        Este snippet es el mismo en todas las páginas del archivo.
+        Los comentarios se asocian automáticamente a cada URL.
+        ══════════════════════════════════════════════════════
+      -->
+      <script src="https://giscus.app/client.js"
+        data-repo="Ppantaleo/escuelaVirgilioBarbalato"
+        data-repo-id="R_kgDOSfhfXw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSfhfX84C9Y14"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
   </div>
 </section>
 
@@ -323,48 +370,64 @@
 <!-- FIN PREVIEW BADGE -->
 
 <script>
-  // ── Navbar toggle ──────────────────────────────────────────
+  // ── Navbar toggle ─────────────────────────────────────────
   document.getElementById('navToggle').addEventListener('click', function() {
     this.classList.toggle('abierto');
     document.querySelector('.nav-links').classList.toggle('abierto');
   });
 
-  // ── Carrusel ───────────────────────────────────────────────
-  const track  = document.getElementById('carruselTrack');
-  const slides = track.querySelectorAll('.carrusel-slide');
-  const dotsEl = document.getElementById('carruselDots');
-  let current  = 0;
-  let timer;
+  // ── Lightbox ──────────────────────────────────────────────
+  //
+  // ACTUALIZAR este array cuando agregues fotos a la grilla.
+  // Cada objeto debe tener: src, titulo, año.
+  // El orden debe coincidir con el onclick="abrirLightbox(N)" de cada foto.
+  //
+  const fotos = [
+    // Ejemplo:
+    // { src: '../img/archivo/fundacion-inauguracion.jpg', titulo: 'Acto de inauguración', año: '1929' },
+    // { src: '../img/archivo/fundacion-alumnos.jpg',     titulo: 'Primeros alumnos',      año: 'c. 1920' },
+  ];
 
-  // Crear dots
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'carrusel-dot' + (i === 0 ? ' activo' : '');
-    d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.onclick = () => irA(i);
-    dotsEl.appendChild(d);
+  let fotoActual = 0;
+  const lightbox = document.getElementById('lightbox');
+
+  function abrirLightbox(n) {
+    if (!fotos.length) return;
+    fotoActual = n;
+    mostrarFoto();
+    lightbox.classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function mostrarFoto() {
+    const f = fotos[fotoActual];
+    document.getElementById('lightboxContenido').innerHTML =
+      `<img class="lightbox-img" src="${f.src}" alt="${f.titulo}">`;
+    document.getElementById('lightboxCaption').innerHTML =
+      `<strong>${f.titulo}</strong><span>${f.año}</span>`;
+    document.getElementById('lightboxCounter').textContent =
+      `${fotoActual + 1} / ${fotos.length}`;
+  }
+
+  function navLightbox(dir, e) {
+    if (e) e.stopPropagation();
+    fotoActual = (fotoActual + dir + fotos.length) % fotos.length;
+    mostrarFoto();
+  }
+
+  function cerrarLightbox(e) {
+    if (e && e.target !== lightbox && !e.target.classList.contains('lightbox-cerrar')) return;
+    lightbox.classList.remove('abierto');
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar con Escape / navegar con flechas del teclado
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('abierto')) return;
+    if (e.key === 'Escape')      cerrarLightbox({target: lightbox});
+    if (e.key === 'ArrowLeft')   navLightbox(-1);
+    if (e.key === 'ArrowRight')  navLightbox(1);
   });
-
-  function irA(n) {
-    current = (n + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dotsEl.querySelectorAll('.carrusel-dot').forEach((d, i) =>
-      d.classList.toggle('activo', i === current));
-    reiniciarTimer();
-  }
-
-  function moverCarrusel(dir) { irA(current + dir); }
-
-  function reiniciarTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => irA(current + 1), 5000);
-  }
-
-  reiniciarTimer();
-
-  // Pausar al hover
-  document.getElementById('carrusel').addEventListener('mouseenter', () => clearInterval(timer));
-  document.getElementById('carrusel').addEventListener('mouseleave', reiniciarTimer);
 </script>
 
 </body>
