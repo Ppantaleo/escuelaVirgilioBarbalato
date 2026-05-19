@@ -29,18 +29,14 @@
     }
     .carrusel-slide img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.85;
+      object-fit: cover; display: block; opacity: 0.85;
     }
     .carrusel-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 12px;
+      align-items: center; justify-content: center; gap: 12px;
       background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-claro) 100%);
-      color: rgba(255,255,255,0.4);
-      font-size: 13px;
+      color: rgba(255,255,255,0.4); font-size: 13px;
     }
     .carrusel-placeholder span { font-size: 48px; opacity: 0.3; }
     .carrusel-caption {
@@ -53,27 +49,18 @@
     .carrusel-caption strong {
       display: block;
       font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 1.15rem; font-weight: 600; margin-bottom: 4px;
     }
-    .carrusel-caption span {
-      font-size: 12.5px;
-      color: rgba(255,255,255,0.65);
-    }
+    .carrusel-caption span { font-size: 12.5px; color: rgba(255,255,255,0.65); }
     .carrusel-btn {
       position: absolute;
       top: 50%; transform: translateY(-50%);
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.25);
-      color: #fff;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
+      color: #fff; width: 40px; height: 40px;
+      border-radius: 50%; font-size: 18px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-      z-index: 2;
+      transition: background 0.2s; z-index: 2;
       backdrop-filter: blur(4px);
     }
     .carrusel-btn:hover { background: rgba(255,255,255,0.3); }
@@ -81,23 +68,15 @@
     .carrusel-btn.next { right: 16px; }
     .carrusel-dots {
       position: absolute;
-      bottom: 16px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; gap: 6px;
-      z-index: 2;
+      bottom: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 2;
     }
     .carrusel-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      cursor: pointer;
-      border: none;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.4); cursor: pointer; border: none;
       transition: background 0.2s, transform 0.2s;
     }
-    .carrusel-dot.activo {
-      background: #fff;
-      transform: scale(1.3);
-    }
+    .carrusel-dot.activo { background: #fff; transform: scale(1.3); }
 
     /* ── LIGHTBOX ──────────────────────────────────────────── */
     .lightbox {
@@ -146,128 +125,92 @@
       font-size: 12px; color: rgba(255,255,255,0.5);
     }
 
-    /* ── GRILLA DE DÉCADAS ────────────────────────────────── */
-    .decadas-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+    /* ── CARDS DE ÉPOCA ────────────────────────────────────── */
     .decada-card {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1.5px solid rgba(0,0,0,0.08);
-      background: var(--blanco);
-      text-decoration: none;
-      display: flex; flex-direction: column;
+      border-radius: 8px; overflow: hidden;
+      border: 1.5px solid rgba(0,0,0,0.08); background: var(--blanco);
+      text-decoration: none; display: flex; flex-direction: column;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .decada-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    }
-    .decada-card.proxima {
-      opacity: 0.55;
-      pointer-events: none;
-    }
-    .decada-thumb {
-      aspect-ratio: 4/3;
-      position: relative;
-      overflow: hidden;
-    }
-    .decada-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.3s;
-    }
+    .decada-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .decada-card.proxima { opacity: 0.55; pointer-events: none; }
+    .decada-thumb { aspect-ratio: 3/2; position: relative; overflow: hidden; }
+    .decada-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
     .decada-card:hover .decada-thumb img { transform: scale(1.04); }
     .decada-thumb-placeholder {
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, var(--verde-suave) 0%, var(--crema-oscura) 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px; color: var(--verde-claro);
+      display: flex; align-items: center; justify-content: center; font-size: 32px;
     }
-    .decada-info {
-      padding: 14px 16px;
-      flex: 1; display: flex; flex-direction: column;
-    }
-    .decada-label {
-      font-family: 'Lora', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--verde-oscuro);
-      margin-bottom: 4px;
-    }
-    .decada-meta {
-      font-size: 12px;
-      color: var(--texto-suave);
-      display: flex; align-items: center; gap: 6px;
-    }
+    .decada-info { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+    .decada-label { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .decada-meta { font-size: 12px; }
     .decada-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-top: 8px;
-      align-self: flex-start;
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 3px; margin-top: 8px; align-self: flex-start;
     }
-    .decada-badge.disponible {
-      background: var(--verde-suave);
-      color: var(--verde);
-    }
-    .decada-badge.proxima {
-      background: var(--crema-oscura);
-      color: var(--texto-suave);
-    }
+    .decada-badge.disponible { background: var(--verde-suave); color: var(--verde); }
+    .decada-badge.proxima    { background: var(--crema-oscura); color: var(--texto-suave); }
 
-    /* ── GRILLA GENERAL DE FOTOS ──────────────────────────── */
-    .foto-general { display: flex; flex-direction: column; gap: 0; }
+    /* ── GRILLA DE FOTOS ───────────────────────────────────── */
+    .foto-general { display: flex; flex-direction: column; }
     .foto-general-thumb {
-      position: relative;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      border-radius: 6px;
-      background: var(--crema-oscura);
+      position: relative; aspect-ratio: 4/3;
+      overflow: hidden; border-radius: 6px; background: var(--crema-oscura);
     }
     .foto-general-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.3s;
+      width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;
     }
     .foto-general:hover .foto-general-thumb img { transform: scale(1.05); }
-    .foto-general-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,61,46,0.7) 0%, transparent 60%);
-      display: flex; align-items: flex-end; padding: 10px;
-      opacity: 0; transition: opacity 0.25s;
+
+    /* Overlay de metadatos (título + año) */
+    .foto-meta {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 12px 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
+      transform: translateY(100%); transition: transform 0.25s ease;
     }
-    .foto-general:hover .foto-general-overlay { opacity: 1; }
-    .foto-general-era {
-      font-size: 10px; font-weight: 700;
+    .foto-general:hover .foto-meta { transform: translateY(0); }
+    .foto-meta-anio {
+      display: inline-block; font-size: 10px; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--dorado);
-      background: rgba(0,0,0,0.3);
-      padding: 3px 8px; border-radius: 3px;
+      color: var(--dorado); margin-bottom: 3px;
     }
+    .foto-meta-titulo { display: block; font-size: 12.5px; font-weight: 600; color: #fff; line-height: 1.35; }
+
+    /* Botón ⓘ y panel de descripción */
+    .foto-info-btn {
+      position: absolute; top: 8px; right: 8px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85); font-size: 13px; font-style: italic;
+      font-family: Georgia, serif; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      line-height: 1; opacity: 0; transition: opacity 0.2s, background 0.2s; z-index: 2;
+    }
+    .foto-general:hover .foto-info-btn { opacity: 1; }
+    .foto-info-btn:hover { background: rgba(0,0,0,0.75); }
+    .foto-desc-panel {
+      display: none; position: absolute;
+      top: 36px; right: 8px; width: 200px;
+      background: rgba(20,40,30,0.95);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px; padding: 10px 12px;
+      font-size: 12px; color: rgba(255,255,255,0.8);
+      line-height: 1.55; z-index: 10; backdrop-filter: blur(4px);
+    }
+    .foto-desc-panel.visible { display: block; }
+
+    /* Caption debajo de la foto */
     .foto-general-caption {
       font-size: 12px; color: var(--texto-suave);
-      margin-top: 7px; line-height: 1.4;
-      padding: 0 2px;
+      margin-top: 7px; line-height: 1.4; padding: 0 2px;
     }
 
     @media (max-width: 768px) {
-      .decadas-grid { grid-template-columns: 1fr 1fr; }
       .carrusel { aspect-ratio: 4/3; max-height: 300px; }
-      [style*="grid-template-columns:repeat(4,1fr)"],
-      [style*="grid-template-columns: repeat(4, 1fr)"] {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-      [style*="grid-template-columns:repeat(3,1fr)"] {
-        grid-template-columns: 1fr !important;
-      }
+      .fotos-grid-4 { grid-template-columns: repeat(2,1fr) !important; }
+      .eras-grid    { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -308,88 +251,59 @@
     <h1 class="hero-mini-titulo">Archivo fotográfico</h1>
     <p class="hero-mini-desc">
       Fotos digitalizadas de la historia de la escuela y la comunidad de General Levalle.
-      Organizadas por década. Si tenés fotos para sumar, escribinos.
+      Si tenés fotos para sumar, escribinos.
     </p>
   </div>
 </section>
 
-<!-- Carrusel de fotos destacadas -->
+<!-- ══════════════════════════════════════════════════════════
+     CARRUSEL DE FOTOS DESTACADAS
+     ══════════════════════════════════════════════════════════
+     Cómo agregar una foto al carrusel:
+
+     <div class="carrusel-slide">
+       <img src="../img/archivo/foto.jpg" alt="descripción">
+       <div class="carrusel-caption">
+         <strong>Título</strong>
+         <span>Año · contexto</span>
+       </div>
+     </div>
+
+     Guardar fotos en img/archivo/ y reemplazar los slides placeholder.
+     ══════════════════════════════════════════════════════════ -->
 <section class="seccion" style="background:var(--verde-oscuro); padding-bottom:0;">
   <div class="seccion-inner">
     <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px;">
-      <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff;">
-        Fotos destacadas
-      </h2>
-      <span style="font-size:12px; color:rgba(255,255,255,0.4);">
-        <!--
-          INSTRUCCIÓN: este texto se actualiza solo con las fotos del carrusel.
-          Ver README para agregar nuevas fotos destacadas.
-        -->
-        0 fotos · próximamente
-      </span>
+      <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff;">Fotos destacadas</h2>
+      <!-- ACTUALIZAR: cambiar cuando haya fotos reales -->
+      <span style="font-size:12px; color:rgba(255,255,255,0.4);">0 fotos · próximamente</span>
     </div>
-
     <div class="carrusel" id="carrusel">
       <div class="carrusel-track" id="carruselTrack">
 
-        <!--
-          ══════════════════════════════════════════════════════
-          CARRUSEL — CÓMO AGREGAR FOTOS DESTACADAS
-          ══════════════════════════════════════════════════════
-          Cada slide sigue esta estructura:
-
-          <div class="carrusel-slide">
-            <img src="../img/archivo/foto-nombre.jpg" alt="descripción">
-            <div class="carrusel-caption">
-              <strong>Título de la foto</strong>
-              <span>Año · contexto opcional</span>
-            </div>
-          </div>
-
-          Guardá las fotos en: img/archivo/
-          Reemplazá los slides placeholder de abajo.
-          ══════════════════════════════════════════════════════
-        -->
-
-        <!-- Slide placeholder 1 -->
         <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>📷</span>
-            <p>Las fotos destacadas aparecerán aquí</p>
-          </div>
+          <div class="carrusel-placeholder"><span>📷</span><p>Las fotos destacadas aparecerán aquí</p></div>
           <div class="carrusel-caption">
             <strong>Próximamente · archivo en construcción</strong>
             <span>Estamos digitalizando fotos históricas</span>
           </div>
         </div>
-
-        <!-- Slide placeholder 2 -->
         <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>🏫</span>
-            <p>Fotos del edificio, actos y egresados</p>
-          </div>
+          <div class="carrusel-placeholder"><span>🏫</span><p>Fotos del edificio, actos y egresados</p></div>
           <div class="carrusel-caption">
             <strong>Más de 110 años de historia en imágenes</strong>
             <span>Si tenés fotos para donar al archivo, escribinos</span>
           </div>
         </div>
-
-        <!-- Slide placeholder 3 -->
         <div class="carrusel-slide">
-          <div class="carrusel-placeholder">
-            <span>👥</span>
-            <p>Fotos de alumnos y docentes</p>
-          </div>
+          <div class="carrusel-placeholder"><span>👥</span><p>Fotos de alumnos y docentes</p></div>
           <div class="carrusel-caption">
             <strong>¿Aparecés en alguna foto?</strong>
-            <span>Dejá un comentario en la sección correspondiente</span>
+            <span>Dejá un comentario más abajo</span>
           </div>
         </div>
 
       </div>
-
-      <!-- Controles -->
       <button class="carrusel-btn prev" onclick="moverCarrusel(-1)" aria-label="Anterior">‹</button>
       <button class="carrusel-btn next" onclick="moverCarrusel(1)" aria-label="Siguiente">›</button>
       <div class="carrusel-dots" id="carruselDots"></div>
@@ -397,136 +311,96 @@
   </div>
 </section>
 
-<!-- 3 secciones del archivo -->
-<section class="seccion" style="background:var(--verde-oscuro);">
-  <div class="seccion-inner">
-    <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:10px;">
-      Explorar por época
-    </h2>
-    <p style="font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:32px; max-width:520px;">
-      Hacé clic en una sección para ver las fotos y dejar comentarios.
-    </p>
+<!-- ══════════════════════════════════════════════════════════
+     GRILLA DE FOTOS
+     ══════════════════════════════════════════════════════════
+     Cómo agregar una foto — solo HTML, sin tocar el JS:
 
-    <!--
-      ══════════════════════════════════════════════════════════
-      SECCIONES DEL ARCHIVO — CÓMO GESTIONAR
-      ══════════════════════════════════════════════════════════
-      Hay 3 cards. Para activar una cuando tenga fotos:
-        1. Quitar class="era-card proxima" → class="era-card"
-        2. Cambiar href="#" por href="decada-ejemplo.html" (o el archivo correspondiente)
-        3. Reemplazar el placeholder por <img src="../img/archivo/portada-X.jpg">
-        4. Actualizar el badge y el contador de fotos
-      ══════════════════════════════════════════════════════════
-    -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+     VARIANTE A — título + año + descripción (botón ⓘ):
+     <div class="foto-general"
+          data-src="../img/archivo/foto.jpg"
+          data-titulo="Acto de egresados"
+          data-año="1965"
+          data-desc="Descripción opcional visible en el lightbox."
+          onclick="abrirLightbox(this)" style="cursor:pointer;">
+       <div class="foto-general-thumb">
+         <img src="../img/archivo/foto.jpg" alt="Acto de egresados · 1965">
+         <div class="foto-meta">
+           <span class="foto-meta-anio">1965</span>
+           <strong class="foto-meta-titulo">Acto de egresados</strong>
+         </div>
+         <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+         <div class="foto-desc-panel">Descripción opcional visible al hacer clic en ⓘ.</div>
+       </div>
+     </div>
 
-      <!-- Sección 1 -->
-      <!-- CUANDO TENGA PÁGINA PROPIA: cambiar href="#" por href="primeros-anos.html" y quitar class proxima -->
-      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">🏛️</div>
-        </div>
-        <div class="decada-info" style="background:transparent;">
-          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Los primeros años</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1914 — 1960</div>
-          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Ver fotos abajo ↓</span>
-        </div>
-      </a>
+     VARIANTE B — solo título + año (sin botón ⓘ):
+     <div class="foto-general"
+          data-src="../img/archivo/foto.jpg"
+          data-titulo="Recreo en el patio"
+          data-año="c. 1970"
+          onclick="abrirLightbox(this)" style="cursor:pointer;">
+       <div class="foto-general-thumb">
+         <img src="../img/archivo/foto.jpg" alt="Recreo en el patio">
+         <div class="foto-meta">
+           <span class="foto-meta-anio">c. 1970</span>
+           <strong class="foto-meta-titulo">Recreo en el patio</strong>
+         </div>
+       </div>
+     </div>
 
-      <!-- Sección 2: próxima -->
-      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
-        </div>
-        <div class="decada-info" style="background:transparent;">
-          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Mediados de siglo</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1960 — 1990</div>
-          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
-        </div>
-      </a>
+     VARIANTE C — sin metadatos (foto limpia):
+     <div class="foto-general"
+          data-src="../img/archivo/foto.jpg"
+          onclick="abrirLightbox(this)" style="cursor:pointer;">
+       <div class="foto-general-thumb">
+         <img src="../img/archivo/foto.jpg" alt="Foto del archivo">
+       </div>
+     </div>
 
-      <!-- Sección 3: próxima -->
-      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
-        <div class="decada-thumb" style="aspect-ratio:3/2;">
-          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
-        </div>
-        <div class="decada-info" style="background:transparent;">
-          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Época reciente</div>
-          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1990 — hoy</div>
-          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- Grilla general de fotos -->
+     Guardar fotos en: img/archivo/
+     Quitar el bloque "Fotos en camino" cuando haya al menos una foto real.
+     ══════════════════════════════════════════════════════════ -->
 <section class="seccion" style="background:var(--crema);">
   <div class="seccion-inner">
     <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
       <h2 class="seccion-titulo">Todas las fotos</h2>
-      <!--
-        ACTUALIZAR: cambiar "0 fotos" por el total real cuando haya imágenes
-      -->
+      <!-- ACTUALIZAR: cambiar por el total real cuando haya imágenes -->
       <span style="font-size:13px; color:var(--texto-suave);">0 fotos · en construcción</span>
     </div>
 
-    <!--
-      ══════════════════════════════════════════════════════════
-      GRILLA GENERAL — CÓMO AGREGAR FOTOS
-      ══════════════════════════════════════════════════════════
-      Reemplazar cada bloque placeholder por:
+    <div class="fotos-grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
 
-      <div class="foto-general">
-        <div class="foto-general-thumb">
-          <img src="../img/archivo/nombre-foto.jpg" alt="descripción">
-          <div class="foto-general-overlay">
-            <span class="foto-general-era">Los primeros años</span>
-          </div>
-        </div>
-        <p class="foto-general-caption">Descripción · Año</p>
-      </div>
-
-      - Quitar el estado vacío (el div con "Fotos en camino") cuando haya al menos una foto
-      ══════════════════════════════════════════════════════════
-    -->
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
-
-      <!-- Estado vacío: quitar cuando haya fotos -->
-      <div style="grid-column:1/-1; text-align:center; padding:52px 20px; color:var(--texto-suave);
+      <!-- ── ESTADO VACÍO: quitar este bloque cuando haya fotos ── -->
+      <div style="grid-column:1/-1; text-align:center; padding:52px 20px;
                   background:var(--blanco); border-radius:8px; border:1.5px dashed var(--crema-oscura);">
         <div style="font-size:44px; margin-bottom:14px; opacity:0.25;">🗂️</div>
-        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:6px;">
-          Fotos en camino
-        </p>
-        <p style="font-size:13.5px; line-height:1.7; max-width:380px; margin:0 auto;">
-          Estamos digitalizando el material histórico. Las fotos irán apareciendo
-          a medida que las tengamos listas.
+        <p style="font-size:15px; font-weight:500; color:var(--verde-oscuro); margin-bottom:6px;">Fotos en camino</p>
+        <p style="font-size:13.5px; color:var(--texto-suave); line-height:1.7; max-width:380px; margin:0 auto;">
+          Estamos digitalizando el material histórico. Las fotos irán apareciendo a medida que las tengamos listas.
         </p>
       </div>
+      <!-- ── FIN ESTADO VACÍO ── -->
 
       <!--
-        ══════════════════════════════════════════════════════════
-        CÓMO AGREGAR FOTOS A ESTA GRILLA
-        ══════════════════════════════════════════════════════════
-        1. Quitar el bloque "Estado vacío" de arriba
-        2. Agregar tantos bloques como fotos tengas:
+        EJEMPLO con img/archivo/1.png — variante A (todos los metadatos):
 
-        <div class="foto-general" onclick="abrirLightbox(0)" style="cursor:pointer;">
+        <div class="foto-general"
+             data-src="../img/archivo/1.png"
+             data-titulo="Acto de egresados"
+             data-año="1965"
+             data-desc="Séptimo grado, generación 1965. Foto cedida por la familia Rodríguez."
+             onclick="abrirLightbox(this)" style="cursor:pointer;">
           <div class="foto-general-thumb">
-            <img src="../img/archivo/foto-01.jpg" alt="descripción">
-            <div class="foto-general-overlay">
-              <span class="foto-general-era">Los primeros años</span>
+            <img src="../img/archivo/1.png" alt="Acto de egresados · 1965">
+            <div class="foto-meta">
+              <span class="foto-meta-anio">1965</span>
+              <strong class="foto-meta-titulo">Acto de egresados</strong>
             </div>
+            <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
+            <div class="foto-desc-panel">Séptimo grado, generación 1965. Foto cedida por la familia Rodríguez.</div>
           </div>
-          <p class="foto-general-caption">Descripción · Año</p>
         </div>
-
-        3. Actualizar el array "fotos" en el <script> al pie de la página.
-           El índice (0, 1, 2...) debe coincidir con el onclick="abrirLightbox(N)".
-        4. Actualizar el contador de fotos en el span de arriba.
-        ══════════════════════════════════════════════════════════
       -->
 
     </div>
@@ -545,24 +419,93 @@
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-<!-- Invitación a aportar fotos -->
-<section style="background:var(--dorado-claro); padding:64px 40px; text-align:center;">
-  <div style="max-width:560px; margin:0 auto;">
-    <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
-      Ayudanos a completar el archivo
-    </p>
-    <h2 style="font-family:'Lora',serif; font-size:1.9rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:16px; line-height:1.3;">
-      ¿Tenés fotos de la escuela?
+<!-- Explorar por época -->
+<section class="seccion" style="background:var(--verde-oscuro);">
+  <div class="seccion-inner">
+    <h2 style="font-family:'Lora',serif; font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:10px;">
+      Explorar por época
     </h2>
-    <p style="font-size:15.5px; color:var(--texto-suave); line-height:1.8; margin-bottom:28px;">
-      Si tenés fotos en papel o digitalizadas de cualquier época,
-      nos encantaría recibirlas para sumarlas al archivo.
-      Podés enviárnoslas por Instagram.
+    <p style="font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:32px; max-width:520px;">
+      Las secciones se irán habilitando a medida que haya fotos disponibles.
     </p>
-    <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
-       class="btn-primario" style="background:var(--verde); color:#fff;">
-      Enviar fotos por Instagram →
-    </a>
+    <!--
+      Para activar una card cuando tenga página propia:
+      1. Quitar class="decada-card proxima" → class="decada-card"
+      2. Cambiar href="#" por href="primeros-anos.html"
+      3. Reemplazar el placeholder por <img src="../img/archivo/portada-X.jpg">
+      4. Actualizar el badge
+    -->
+    <div class="eras-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+
+      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
+        <div class="decada-thumb">
+          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">🏛️</div>
+        </div>
+        <div class="decada-info" style="background:transparent;">
+          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Los primeros años</div>
+          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1914 — 1960</div>
+          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Ver fotos arriba ↑</span>
+        </div>
+      </a>
+
+      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
+        <div class="decada-thumb">
+          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
+        </div>
+        <div class="decada-info" style="background:transparent;">
+          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Mediados de siglo</div>
+          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1960 — 1990</div>
+          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
+        </div>
+      </a>
+
+      <a href="#" class="decada-card proxima" style="border-color:rgba(255,255,255,0.08); background:rgba(255,255,255,0.03);">
+        <div class="decada-thumb">
+          <div class="decada-thumb-placeholder" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.15);">📷</div>
+        </div>
+        <div class="decada-info" style="background:transparent;">
+          <div class="decada-label" style="color:rgba(255,255,255,0.5);">Época reciente</div>
+          <div class="decada-meta" style="color:rgba(255,255,255,0.3);">1990 — hoy</div>
+          <span class="decada-badge proxima" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); margin-top:10px;">Próximamente</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA socios — recuerdos -->
+<section style="background:var(--dorado-claro); padding:72px 40px;">
+  <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
+        Más que recuerdos
+      </p>
+      <h2 style="font-family:'Lora',serif; font-size:2rem; font-weight:700; color:var(--verde-oscuro); margin-bottom:16px; line-height:1.3;">
+        ¿Tenés lindos recuerdos de la escuela?
+      </h2>
+      <p style="font-size:15.5px; color:var(--texto-suave); line-height:1.85; margin-bottom:0;">
+        Esos recuerdos son parte de la historia de General Levalle. Y la historia también
+        se construye hacia adelante. Hoy podés seguir siendo parte de la escuela
+        acompañándola como ex alumno socio: ayudando a que los chicos de hoy
+        tengan los mismos buenos recuerdos mañana.
+      </p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <a href="../socios.html" class="btn-primario"
+         style="text-align:center; background:var(--verde); color:#fff; display:block; font-size:15px; padding:16px 32px;">
+        Sumate como ex alumno socio →
+      </a>
+      <p style="font-size:13px; color:var(--texto-suave); text-align:center; line-height:1.6;">
+        También podés enviar fotos o dejar un comentario en la sección de abajo.
+        Cada aporte ayuda a completar la memoria colectiva.
+      </p>
+      <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+         style="text-align:center; font-size:13.5px; color:var(--verde); font-weight:600;
+                text-decoration:none; border-bottom:1.5px solid var(--verde); padding-bottom:2px; align-self:center;">
+        Enviarnos fotos por Instagram →
+      </a>
+    </div>
   </div>
 </section>
 
@@ -612,13 +555,13 @@
       <h4>Contacto</h4>
       <ul>
         <li><a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank">Instagram</a></li>
-        <li><a href="#">General Levalle, Córdoba</a></li>
+        <li><a href="mailto:c.e.barbalato@hotmail.com">c.e.barbalato@hotmail.com</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 · Escuela Dr. Virgilio Barbalato · General Levalle, Córdoba</span>
-    <span>Sitio comunitario sin fines de lucro</span>
+    <a href="../legal.html" style="color:rgba(255,255,255,0.35); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.2);">Aviso legal</a>
   </div>
 </footer>
 
@@ -646,7 +589,6 @@
   let current  = 0;
   let timer;
 
-  // Crear dots
   slides.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'carrusel-dot' + (i === 0 ? ' activo' : '');
@@ -671,42 +613,45 @@
   }
 
   reiniciarTimer();
+  document.getElementById('carrusel').addEventListener('mouseenter', () => clearInterval(timer));
+  document.getElementById('carrusel').addEventListener('mouseleave', reiniciarTimer);
 
-  // ── Lightbox ──────────────────────────────────────────────
-  //
-  // ACTUALIZAR este array cuando agregues fotos a la grilla.
-  // El orden debe coincidir con onclick="abrirLightbox(N)".
-  //
-  const fotos = [
-    // Ejemplo:
-    // { src: '../img/archivo/foto-01.jpg', titulo: 'Acto de fundación', año: '1914' },
-  ];
-
-  let fotoActual = 0;
+  // ── Lightbox — lee datos del HTML, sin array manual ────────
   const lightbox = document.getElementById('lightbox');
 
-  function abrirLightbox(n) {
-    if (!fotos.length) return;
-    fotoActual = n;
-    mostrarFoto();
+  function abrirLightbox(el) {
+    const items = [...document.querySelectorAll('.foto-general[data-src]')];
+    if (!items.length) return;
+    const idx = items.indexOf(el);
+    mostrarFoto(items, idx);
     lightbox.classList.add('abierto');
+    lightbox.dataset.idx = idx;
     document.body.style.overflow = 'hidden';
   }
 
-  function mostrarFoto() {
-    const f = fotos[fotoActual];
+  function mostrarFoto(items, idx) {
+    if (!items) items = [...document.querySelectorAll('.foto-general[data-src]')];
+    const el    = items[idx];
+    const src   = el.dataset.src;
+    const titulo = el.dataset.titulo || '';
+    const año   = el.dataset.año    || '';
+    const desc  = el.dataset.desc   || '';
     document.getElementById('lightboxContenido').innerHTML =
-      `<img class="lightbox-img" src="${f.src}" alt="${f.titulo}">`;
+      `<img class="lightbox-img" src="${src}" alt="${titulo}">`;
     document.getElementById('lightboxCaption').innerHTML =
-      `<strong>${f.titulo}</strong><span>${f.año}</span>`;
+      `${titulo ? `<strong>${titulo}</strong>` : ''}
+       ${año    ? `<span>${año}</span>` : ''}
+       ${desc   ? `<em style="display:block;font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;">${desc}</em>` : ''}`;
     document.getElementById('lightboxCounter').textContent =
-      `${fotoActual + 1} / ${fotos.length}`;
+      items.length > 1 ? `${idx + 1} / ${items.length}` : '';
+    lightbox.dataset.idx = idx;
   }
 
   function navLightbox(dir, e) {
     if (e) e.stopPropagation();
-    fotoActual = (fotoActual + dir + fotos.length) % fotos.length;
-    mostrarFoto();
+    const items = [...document.querySelectorAll('.foto-general[data-src]')];
+    const idx = ((+lightbox.dataset.idx) + dir + items.length) % items.length;
+    mostrarFoto(items, idx);
   }
 
   function cerrarLightbox(e) {
@@ -720,6 +665,21 @@
     if (e.key === 'Escape')     cerrarLightbox({ target: lightbox });
     if (e.key === 'ArrowLeft')  navLightbox(-1);
     if (e.key === 'ArrowRight') navLightbox(1);
+  });
+
+  // ── Panel de descripción (botón ⓘ) ────────────────────────
+  function toggleDesc(e, btn) {
+    e.stopPropagation();
+    const panel = btn.nextElementSibling;
+    panel.classList.toggle('visible');
+    document.querySelectorAll('.foto-desc-panel.visible').forEach(p => {
+      if (p !== panel) p.classList.remove('visible');
+    });
+  }
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.foto-desc-panel.visible')
+      .forEach(p => p.classList.remove('visible'));
   });
 </script>
 
