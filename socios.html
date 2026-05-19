@@ -9,16 +9,12 @@
   <link rel="stylesheet" href="css/estilos.css">
   <style>
     .beneficio-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--crema-oscura);
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid var(--crema-oscura);
     }
     .beneficio-item:last-child { border-bottom: none; }
     .beneficio-icono {
-      width: 44px; height: 44px;
-      border-radius: 8px;
+      width: 44px; height: 44px; border-radius: 8px;
       background: var(--verde-suave);
       display: flex; align-items: center; justify-content: center;
       font-size: 20px; flex-shrink: 0;
@@ -28,17 +24,12 @@
 
     /* Planes */
     .planes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 780px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; max-width: 780px; margin: 0 auto;
     }
     .plan-card {
-      background: var(--blanco);
-      border-radius: 8px;
-      padding: 32px 28px;
-      border: 1.5px solid rgba(0,0,0,0.08);
+      background: var(--blanco); border-radius: 8px;
+      padding: 32px 28px; border: 1.5px solid rgba(0,0,0,0.08);
       display: flex; flex-direction: column;
     }
     .plan-card.destacado { border-color: var(--verde); position: relative; }
@@ -72,25 +63,97 @@
       flex-shrink: 0; margin-top: 1px;
     }
 
-    /* Tabs pago plan 2 */
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid var(--crema-oscura);
-      margin-bottom: 18px;
+    /* Bloque de pago */
+    .pago-bloque {
+      display: flex; flex-direction: column; gap: 8px; margin-top: auto;
     }
+    .pago-mp-desc {
+      font-size: 11px; color: var(--texto-suave);
+      text-align: center; line-height: 1.5; margin-top: 2px;
+    }
+    .pago-separador {
+      display: flex; align-items: center; gap: 10px;
+      margin: 4px 0;
+    }
+    .pago-separador::before,
+    .pago-separador::after {
+      content: ''; flex: 1; height: 1px; background: var(--crema-oscura);
+    }
+    .pago-separador span {
+      font-size: 11px; color: var(--texto-suave); font-weight: 500;
+    }
+    .btn-transferencia {
+      width: 100%; background: transparent;
+      border: 1.5px solid var(--verde); color: var(--verde);
+      padding: 11px; border-radius: 4px;
+      font-family: 'DM Sans', sans-serif; font-size: 13.5px;
+      font-weight: 600; cursor: pointer; transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .btn-transferencia:hover { background: var(--verde-suave); }
+
+    /* Tabs */
+    .tabs { display: flex; border-bottom: 2px solid var(--crema-oscura); margin-bottom: 18px; }
     .tab-btn {
-      flex: 1; background: none; border: none;
-      padding: 10px 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12.5px; font-weight: 500;
+      flex: 1; background: none; border: none; padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500;
       color: var(--texto-suave); cursor: pointer;
       border-bottom: 2px solid transparent; margin-bottom: -2px;
-      transition: color 0.2s, border-color 0.2s;
-      text-align: center; line-height: 1.5;
+      transition: color 0.2s, border-color 0.2s; text-align: center; line-height: 1.5;
     }
     .tab-btn.activo { color: var(--verde-oscuro); border-bottom-color: var(--verde); font-weight: 600; }
     .tab-panel { display: none; }
     .tab-panel.activo { display: block; }
+
+    /* Modal transferencia */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 400;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.abierto { display: flex; }
+    .modal {
+      background: var(--blanco); border-radius: 10px;
+      padding: 36px 32px; max-width: 480px; width: 100%;
+      position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .modal-cerrar {
+      position: absolute; top: 16px; right: 18px;
+      background: none; border: none; font-size: 22px;
+      color: var(--texto-suave); cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-cerrar:hover { color: var(--texto); }
+    .modal h3 {
+      font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700;
+      color: var(--verde-oscuro); margin-bottom: 6px;
+    }
+    .modal-monto {
+      font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--verde); margin-bottom: 4px;
+    }
+    .modal-monto-nota { font-size: 12px; color: var(--texto-suave); margin-bottom: 20px; }
+    .modal-dato {
+      background: var(--crema); border-radius: 6px;
+      padding: 14px 16px; margin-bottom: 10px;
+    }
+    .modal-dato label {
+      display: block; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--texto-suave); margin-bottom: 4px;
+    }
+    .modal-dato strong {
+      font-size: 15px; color: var(--verde-oscuro);
+      font-weight: 600; display: block; word-break: break-all;
+    }
+    .modal-aviso {
+      background: var(--dorado-claro);
+      border-left: 3px solid var(--dorado);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 14px; margin-top: 16px;
+      font-size: 13px; color: var(--texto-suave); line-height: 1.6;
+    }
+    .modal-aviso strong { color: var(--verde-oscuro); }
 
     /* Formulario */
     .form-campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
@@ -125,9 +188,7 @@
     </div>
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menú">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
     <li><a href="index.html">Inicio</a></li>
@@ -151,7 +212,7 @@
   </div>
 </section>
 
-<!-- ¿Para qué sirve tu apoyo? (ancho completo) -->
+<!-- ¿Para qué sirve tu apoyo? -->
 <section class="seccion" style="background:var(--crema);">
   <div class="seccion-inner">
     <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px;">
@@ -197,7 +258,7 @@
   </div>
 </section>
 
-<!-- Planes (ancho completo, centrado) -->
+<!-- Planes -->
 <section class="seccion" style="background:var(--crema-oscura);">
   <div class="seccion-inner">
     <p style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--verde); margin-bottom:14px; text-align:center;">
@@ -227,37 +288,44 @@
           <li>Reconocimiento en el sitio web como ex alumno socio</li>
           <li>Invitación a actos y eventos especiales</li>
         </ul>
-        <a href="#formulario-alternativo" class="btn-primario"
-           style="text-align:center; background:var(--verde); color:#fff; display:block;">
-          Quiero sumarme
-        </a>
+
+        <div class="pago-bloque">
+          <!--
+            MERCADO PAGO: reemplazar href="#" por el link de suscripción generado en
+            tu cuenta de Mercado Pago (Cobros → Suscripciones → Crear suscripción).
+          -->
+          <a href="#" class="btn-primario"
+             style="text-align:center; background:var(--verde); color:#fff; display:block;">
+            Suscribirme con tarjeta →
+          </a>
+          <p class="pago-mp-desc">
+            Débito automático mensual · procesado por Mercado Pago
+          </p>
+          <div class="pago-separador"><span>o</span></div>
+          <button class="btn-transferencia" onclick="abrirTransferencia('adherente')">
+            Prefiero transferir
+          </button>
+        </div>
       </div>
 
-      <!-- Plan 2: semestral / anual con tabs -->
+      <!-- Plan 2: semestral / anual -->
       <div class="plan-card destacado">
         <span class="plan-badge">Mayor impacto</span>
-
         <div class="plan-nombre" style="margin-top:8px;">Socio activo</div>
 
-        <!-- Tabs -->
         <div class="tabs">
           <button class="tab-btn activo" onclick="cambiarTab('semestral')">
-            2 pagos semestrales<br>
-            <strong>$50.000 c/u</strong>
+            2 pagos semestrales<br><strong>$50.000 c/u</strong>
           </button>
           <button class="tab-btn" onclick="cambiarTab('anual')">
-            1 pago anual<br>
-            <strong>$85.000</strong>
+            1 pago anual<br><strong>$85.000</strong>
           </button>
         </div>
 
-        <!-- Panel semestral -->
         <div class="tab-panel activo" id="panel-semestral">
           <div class="plan-precio">$50.000 <span>× 2 pagos</span></div>
           <p class="plan-precio-nota">total $100.000 al año</p>
         </div>
-
-        <!-- Panel anual -->
         <div class="tab-panel" id="panel-anual">
           <div class="plan-precio">$85.000 <span>/ año</span></div>
           <p class="plan-precio-nota">pago único · ahorrás $15.000</p>
@@ -273,10 +341,26 @@
           <li>Mención en la memoria anual de la escuela</li>
           <li>Participación en encuentros anuales de ex alumnos</li>
         </ul>
-        <a href="#formulario-alternativo" class="btn-primario"
-           style="text-align:center; display:block;">
-          Quiero sumarme
-        </a>
+
+        <div class="pago-bloque">
+          <!--
+            MERCADO PAGO: reemplazar href="#" por el link de pago generado en
+            tu cuenta de Mercado Pago (Cobros → Crear link de pago).
+            Podés crear un link para $50.000 y otro para $85.000 y
+            mostrarlos condicionalmente si lo preferís; por ahora va uno genérico.
+          -->
+          <a href="#" class="btn-primario"
+             style="text-align:center; display:block;">
+            Pagar con tarjeta →
+          </a>
+          <p class="pago-mp-desc">
+            Tarjeta de crédito o débito · procesado por Mercado Pago
+          </p>
+          <div class="pago-separador"><span>o</span></div>
+          <button class="btn-transferencia" onclick="abrirTransferencia('activo')">
+            Prefiero transferir
+          </button>
+        </div>
       </div>
 
     </div>
@@ -297,15 +381,11 @@
       materiales, servicios, trabajo voluntario, donaciones puntuales —
       contanos y lo charlamos.
     </p>
-
     <!--
-      FORMULARIO: sin backend por ahora (GitHub Pages es solo estático).
-      Para activar, usar Formspree:
-        1. Registrarse en https://formspree.io
-        2. Crear un formulario y copiar el ID
-        3. Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
-        4. Agregar method="POST" ya está puesto.
-      Gratis hasta 50 envíos por mes.
+      FORMULARIO: activar con Formspree.
+      1. Registrarse en https://formspree.io
+      2. Crear un formulario y copiar el ID
+      3. Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
     -->
     <div style="background:var(--blanco); border-radius:8px; padding:36px; border:1px solid rgba(0,0,0,0.07);">
       <form action="#" method="POST">
@@ -378,7 +458,6 @@
 
 <!-- ============================================================
      INICIO PREVIEW BADGE
-     Solo visible durante revisión del diseño.
      Para ocultar: comentar desde aquí hasta FIN PREVIEW BADGE.
      ============================================================ -->
 <div class="preview-badge">
@@ -387,7 +466,76 @@
 </div>
 <!-- FIN PREVIEW BADGE -->
 
+<!-- ══════════════════════════════════════════════════════════
+     MODAL DE TRANSFERENCIA BANCARIA
+     ══════════════════════════════════════════════════════════
+     Datos a completar antes de publicar:
+       · CBU: reemplazar "0000000000000000000000" por el CBU real
+       · Alias: reemplazar "ALIAS.ESCUELA.VB" por el alias real
+       · Titular: verificar nombre del titular de la cuenta
+       · Banco: completar
+     El mail de comprobante ya está: c.e.barbalato@hotmail.com
+     ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-cerrar" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+
+    <h3 id="modalTitulo">Transferencia bancaria</h3>
+    <div class="modal-monto" id="modalMonto"></div>
+    <p class="modal-monto-nota" id="modalMonto-nota"></p>
+
+    <div class="modal-dato">
+      <label>CBU</label>
+      <!--
+        REEMPLAZAR por el CBU real de la cuenta de la escuela
+      -->
+      <strong id="modalCBU">0000000000000000000000</strong>
+    </div>
+
+    <div class="modal-dato">
+      <label>Alias</label>
+      <!--
+        REEMPLAZAR por el alias real
+      -->
+      <strong>ALIAS.ESCUELA.VB</strong>
+    </div>
+
+    <div class="modal-dato">
+      <label>Titular</label>
+      <!--
+        REEMPLAZAR por el nombre del titular de la cuenta
+      -->
+      <strong>Centro Educativo Dr. Virgilio Barbalato</strong>
+    </div>
+
+    <div class="modal-dato">
+      <label>Enviar comprobante a</label>
+      <strong>
+        <a href="mailto:c.e.barbalato@hotmail.com"
+           style="color:var(--verde); text-decoration:none;">
+          c.e.barbalato@hotmail.com
+        </a>
+      </strong>
+    </div>
+
+    <!-- Aviso de transferencia recurrente — se muestra solo en planes periódicos -->
+    <div class="modal-aviso" id="modalAviso" style="display:none;">
+      <strong>📅 Recordatorio:</strong> este plan tiene pagos periódicos.
+      Te pedimos que <strong>agendés la transferencia</strong> para que no se te pase la fecha.
+      Una vez realizado el primer pago y enviado el comprobante, te confirmamos la activación.
+    </div>
+
+  </div>
+</div>
+
 <script>
+  // ── Navbar toggle ────────────────────────────────────────
+  document.getElementById('navToggle').addEventListener('click', function() {
+    this.classList.toggle('abierto');
+    document.querySelector('.nav-links').classList.toggle('abierto');
+  });
+
+  // ── Tabs plan activo ──────────────────────────────────────
   function cambiarTab(tab) {
     document.getElementById('panel-semestral').classList.remove('activo');
     document.getElementById('panel-anual').classList.remove('activo');
@@ -395,11 +543,63 @@
     document.getElementById('panel-' + tab).classList.add('activo');
     document.querySelectorAll('.tab-btn')[tab === 'semestral' ? 0 : 1].classList.add('activo');
   }
-</script>
-<script>
-  document.getElementById('navToggle').addEventListener('click', function() {
-    this.classList.toggle('abierto');
-    document.querySelector('.nav-links').classList.toggle('abierto');
+
+  // ── Modal transferencia ───────────────────────────────────
+  const planes = {
+    adherente: {
+      titulo:    'Transferencia · Socio adherente',
+      monto:     '$3.000',
+      nota:      'por mes · débito mensual',
+      recurrente: true
+    },
+    activo: {
+      // El monto se lee dinámicamente según el tab activo
+      titulo:    'Transferencia · Socio activo',
+      monto:     null,
+      nota:      null,
+      recurrente: false
+    }
+  };
+
+  function abrirTransferencia(plan) {
+    const datos = planes[plan];
+
+    // Para plan activo, leer el tab seleccionado
+    let monto = datos.monto;
+    let nota  = datos.nota;
+    let recurrente = datos.recurrente;
+
+    if (plan === 'activo') {
+      const tabActivo = document.querySelector('#panel-semestral.activo') ? 'semestral' : 'anual';
+      if (tabActivo === 'semestral') {
+        monto = '$50.000';
+        nota  = '× 2 pagos semestrales · total $100.000/año';
+        recurrente = true;
+      } else {
+        monto = '$85.000';
+        nota  = 'pago único anual';
+        recurrente = false;
+      }
+    }
+
+    document.getElementById('modalTitulo').textContent = datos.titulo;
+    document.getElementById('modalMonto').textContent  = monto;
+    document.getElementById('modalMonto-nota').textContent = nota;
+    document.getElementById('modalAviso').style.display = recurrente ? 'block' : 'none';
+
+    document.getElementById('modalOverlay').classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarModal(e) {
+    if (e && e.target !== document.getElementById('modalOverlay') &&
+        !e.target.classList.contains('modal-cerrar')) return;
+    document.getElementById('modalOverlay').classList.remove('abierto');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') cerrarModal({ target: document.getElementById('modalOverlay') });
   });
 </script>
 
