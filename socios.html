@@ -381,47 +381,22 @@
       materiales, servicios, trabajo voluntario, donaciones puntuales —
       contanos y lo charlamos.
     </p>
-    <!--
-      FORMULARIO: activar con Formspree.
-      1. Registrarse en https://formspree.io
-      2. Crear un formulario y copiar el ID
-      3. Reemplazar action="#" por action="https://formspree.io/f/TU_ID"
-    -->
     <div style="background:var(--blanco); border-radius:8px; padding:36px; border:1px solid rgba(0,0,0,0.07);">
-      <form action="#" method="POST">
-        <div class="form-fila">
-          <div class="form-campo">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-          </div>
-          <div class="form-campo">
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
-          </div>
-        </div>
-        <div class="form-campo">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
-        </div>
-        <div class="form-campo">
-          <label for="telefono">Teléfono / WhatsApp (opcional)</label>
-          <input type="tel" id="telefono" name="telefono" placeholder="+54 ...">
-        </div>
-        <div class="form-campo">
-          <label for="propuesta">¿Cómo te gustaría aportar?</label>
-          <textarea id="propuesta" name="propuesta" required
-            placeholder="Contanos tu idea: donación puntual, materiales, servicios, voluntariado..."></textarea>
-        </div>
-        <button type="submit" class="btn-primario"
-          style="width:100%; text-align:center; margin-top:4px; background:var(--verde); color:#fff;">
-          Enviar mi propuesta →
-        </button>
-        <p style="font-size:12px; color:var(--texto-suave); text-align:center; margin-top:12px;">
-          También podés escribirnos por
-          <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
-             style="color:var(--verde); font-weight:600; text-decoration:none;">Instagram</a>.
-        </p>
-      </form>
+      <p style="font-size:15px; color:var(--texto-suave); line-height:1.8; margin-bottom:24px; text-align:center;">
+        Escribinos un correo con tus datos (nombre, apellido, teléfono o WhatsApp)
+        y contanos cómo te gustaría aportar: donación puntual, materiales,
+        servicios, voluntariado o cualquier otra propuesta.
+      </p>
+      <a class="btn-primario"
+         style="display:block; width:100%; text-align:center; background:var(--verde); color:#fff; text-decoration:none; box-sizing:border-box;"
+         href="mailto:c.e.barbalato@hotmail.com?subject=Quiero%20colaborar%20con%20la%20escuela&body=Nombre%3A%20%0AApellido%3A%20%0ATel%C3%A9fono%20%2F%20WhatsApp%3A%20%0A%0AC%C3%B3mo%20me%20gustar%C3%ADa%20aportar%3A%20%0A">
+        Escribir un correo →
+      </a>
+      <p style="font-size:12px; color:var(--texto-suave); text-align:center; margin-top:16px;">
+        También podés escribirnos por
+        <a href="https://www.instagram.com/primariavirgiliobarbalato/" target="_blank"
+           style="color:var(--verde); font-weight:600; text-decoration:none;">Instagram</a>.
+      </p>
     </div>
   </div>
 </section>
@@ -459,22 +434,22 @@
 <!-- ============================================================
      INICIO PREVIEW BADGE
      Para ocultar: comentar desde aquí hasta FIN PREVIEW BADGE.
-     ============================================================ -->
+     ============================================================
 <div class="preview-badge">
   <div class="preview-dot"></div>
   Sitio en desarrollo · no publicar aún
 </div>
-<!-- FIN PREVIEW BADGE -->
+FIN PREVIEW BADGE -->
 
 <!-- ══════════════════════════════════════════════════════════
-     MODAL DE TRANSFERENCIA BANCARIA
+     MODAL DE TRANSFERENCIA BANCARIA (Mercado Pago)
      ══════════════════════════════════════════════════════════
-     Datos a completar antes de publicar:
-       · CBU: reemplazar "0000000000000000000000" por el CBU real
-       · Alias: reemplazar "ALIAS.ESCUELA.VB" por el alias real
-       · Titular: verificar nombre del titular de la cuenta
-       · Banco: completar
-     El mail de comprobante ya está: c.e.barbalato@hotmail.com
+     Datos cargados:
+       · CVU: 0000003100053517844498
+       · Alias: coopbarbalato.mp
+     Pendiente verificar:
+       · Titular de la cuenta
+     Mail de comprobante: c.e.barbalato@hotmail.com
      ══════════════════════════════════════════════════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
   <div class="modal" id="modal">
@@ -485,19 +460,13 @@
     <p class="modal-monto-nota" id="modalMonto-nota"></p>
 
     <div class="modal-dato">
-      <label>CBU</label>
-      <!--
-        REEMPLAZAR por el CBU real de la cuenta de la escuela
-      -->
-      <strong id="modalCBU">0000000000000000000000</strong>
+      <label>CVU</label>
+      <strong id="modalCBU">0000003100053517844498</strong>
     </div>
 
     <div class="modal-dato">
       <label>Alias</label>
-      <!--
-        REEMPLAZAR por el alias real
-      -->
-      <strong>ALIAS.ESCUELA.VB</strong>
+      <strong>coopbarbalato.mp</strong>
     </div>
 
     <div class="modal-dato">

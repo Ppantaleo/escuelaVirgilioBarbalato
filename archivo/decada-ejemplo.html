@@ -144,12 +144,6 @@
       font-size: 12px; color: rgba(255,255,255,0.5);
     }
 
-    /* ── GISCUS ────────────────────────────────────────────── */
-    .giscus-wrapper {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
     @media (max-width: 768px) {
       .fotos-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -294,38 +288,38 @@
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-<!-- Comentarios con Giscus -->
+<!-- Comentarios con Disqus -->
 <section class="seccion" style="background:var(--crema-oscura);">
   <div class="seccion-inner">
     <h2 class="seccion-titulo" style="margin-bottom:8px;">Comentarios</h2>
     <p style="font-size:14px; color:var(--texto-suave); margin-bottom:32px;">
       ¿Reconocés a alguien en las fotos? ¿Tenés más información sobre esta época?
-      Dejá tu comentario. Se necesita cuenta de GitHub (gratuita).
+      Dejá tu comentario. Podés iniciar sesión con Google, Facebook, Twitter o crear una cuenta de Disqus.
     </p>
-    <div class="giscus-wrapper">
-      <!--
-        ══════════════════════════════════════════════════════
-        GISCUS — sistema de comentarios
-        Este snippet es el mismo en todas las páginas del archivo.
-        Los comentarios se asocian automáticamente a cada URL.
-        ══════════════════════════════════════════════════════
-      -->
-      <script src="https://giscus.app/client.js"
-        data-repo="Ppantaleo/escuelaVirgilioBarbalato"
-        data-repo-id="R_kgDOSfhfXw"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOSfhfX84C9Y14"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="es"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </div>
+    <!--
+      ══════════════════════════════════════════════════════
+      DISQUS — sistema de comentarios
+      Site: escuela-virgilio-barbalato.disqus.com
+      Los comentarios se asocian automáticamente a cada URL.
+      ══════════════════════════════════════════════════════
+    -->
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url        = window.location.href;
+        this.page.identifier = window.location.pathname;
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://escuela-virgilio-barbalato.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>
+      Activá JavaScript para ver los
+      <a href="https://disqus.com/?ref_noscript">comentarios con tecnología de Disqus</a>.
+    </noscript>
   </div>
 </section>
 
@@ -363,12 +357,12 @@
 <!-- ============================================================
      INICIO PREVIEW BADGE
      Para ocultar: comentar desde aquí hasta FIN PREVIEW BADGE.
-     ============================================================ -->
+     ============================================================
 <div class="preview-badge">
   <div class="preview-dot"></div>
   Sitio en desarrollo · no publicar aún
 </div>
-<!-- FIN PREVIEW BADGE -->
+FIN PREVIEW BADGE -->
 
 <script>
   // ── Navbar toggle ─────────────────────────────────────────
