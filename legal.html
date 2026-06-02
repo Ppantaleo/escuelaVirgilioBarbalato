@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VH0XRWZ177"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // Consent Mode: sin cookies de analítica hasta que la persona las acepte
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+    gtag('js', new Date());
+
+    gtag('config', 'G-VH0XRWZ177');
+  </script>
+  <script defer src="js/cookies.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -92,8 +104,10 @@
         Comentarios y contenido generado por usuarios
       </h2>
       <p>
-        Este sitio permite que visitantes dejen comentarios en la sección del archivo
-        fotográfico a través de la plataforma Giscus, vinculada a GitHub.
+        Este sitio permite que los visitantes dejen comentarios en la sección del archivo
+        fotográfico a través de la plataforma <strong>Disqus</strong>. Para participar,
+        Disqus puede pedirte iniciar sesión (con Google, Facebook, X/Twitter o una cuenta
+        propia de Disqus) y, al ser un servicio de terceros, instala sus propias cookies.
         Los comentarios son responsabilidad de quienes los publican.
         La institución se reserva el derecho de moderar o eliminar contenido
         que resulte inapropiado, ofensivo o que no tenga relación con el fin
@@ -109,6 +123,30 @@
         del sitio (nombre, correo electrónico, año de cursado) son utilizados
         exclusivamente para gestionar la campaña de ex alumnos socios.
         No son cedidos a terceros ni utilizados con fines comerciales.
+      </p>
+
+      <h2 style="font-family:'Lora',serif; font-size:1.5rem; font-weight:700;
+                 color:var(--verde-oscuro); margin:40px 0 16px;">
+        Cookies y medición de audiencia
+      </h2>
+      <p>
+        Este sitio utiliza cookies y tecnologías similares con dos finalidades:
+      </p>
+      <ul style="margin:12px 0 16px 20px; display:flex; flex-direction:column; gap:8px;">
+        <li><strong>Analítica (Google Analytics):</strong> nos permite conocer de forma
+            agregada y anónima cuántas personas visitan el sitio y qué secciones consultan,
+            con el fin de mejorar el contenido. Estas cookies <em>solo se activan si las aceptás</em>.</li>
+        <li><strong>Comentarios (Disqus):</strong> si usás la sección de comentarios del
+            archivo fotográfico, Disqus instala cookies necesarias para identificar tu
+            sesión y prevenir abusos.</li>
+      </ul>
+      <p>
+        Al ingresar por primera vez verás un aviso para <strong>aceptar</strong> las cookies
+        o continuar usando <strong>solo las necesarias</strong>. Mientras no aceptes, la
+        analítica funciona sin instalar cookies en tu dispositivo. Podés cambiar tu elección
+        en cualquier momento borrando los datos de navegación de tu navegador.
+        No utilizamos cookies con fines publicitarios ni cedemos esta información a terceros
+        con ese objetivo.
       </p>
 
       <h2 style="font-family:'Lora',serif; font-size:1.5rem; font-weight:700;

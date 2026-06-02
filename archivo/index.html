@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VH0XRWZ177"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // Consent Mode: sin cookies de analítica hasta que la persona las acepte
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+    gtag('js', new Date());
+
+    gtag('config', 'G-VH0XRWZ177');
+  </script>
+  <script defer src="../js/cookies.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -201,6 +213,19 @@
     }
     .foto-desc-panel.visible { display: block; }
 
+    /* Chip de ID — permite referenciar/enlazar cada foto */
+    .foto-id {
+      position: absolute; top: 8px; left: 8px; z-index: 3;
+      font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.04em; color: #fff; text-decoration: none;
+      background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.2);
+      padding: 2px 7px; border-radius: 3px; backdrop-filter: blur(2px);
+      transition: background 0.2s;
+    }
+    .foto-id:hover { background: var(--verde); }
+    /* Resalta la foto cuando se llega por su enlace permanente (#foto-…) */
+    .foto-general:target .foto-general-thumb { outline: 3px solid var(--dorado); outline-offset: 2px; }
+
     /* Caption debajo de la foto */
     .foto-general-caption {
       font-size: 12px; color: var(--texto-suave);
@@ -282,21 +307,21 @@
       <div class="carrusel-track" id="carruselTrack">
 
         <div class="carrusel-slide">
-          <img src="../img/archivo/5.png" alt="descripción">
+          <img src="../img/archivo/foto-024.png" alt="descripción">
           <div class="carrusel-caption">
             <strong>Primer grado</strong>
             <span>1954 · Turno tarde</span>
           </div>
         </div>
         <div class="carrusel-slide">
-          <img src="../img/archivo/6.png" alt="descripción">
+          <img src="../img/archivo/foto-025.png" alt="descripción">
           <div class="carrusel-caption">
             <strong>Día de la Bandera</strong>
             <span>2005 · Acto Día de la Bandera</span>
           </div>
         </div>
         <div class="carrusel-slide">
-          <img src="../img/archivo/7.png" alt="descripción">
+          <img src="../img/archivo/foto-026.png" alt="descripción">
           <div class="carrusel-caption">
             <strong>Navidad en los años 90</strong>
             <span>1990s · Navidad en el aula</span>
@@ -316,26 +341,32 @@
     <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px;">
       <h2 class="seccion-titulo">Todas las fotos</h2>
       <!-- ACTUALIZAR: cambiar el número cuando agregues más fotos -->
-      <span style="font-size:13px; color:var(--texto-suave);">4 fotos</span>
+      <span style="font-size:13px; color:var(--texto-suave);">26 fotos</span>
     </div>
 
     <!--
       ══════════════════════════════════════════════════════════
       CÓMO AGREGAR UNA FOTO NUEVA
       ══════════════════════════════════════════════════════════
-      Copiá uno de los tres modelos de abajo según los datos que tengas.
-      Guardá la imagen en img/archivo/ y actualizá el contador de arriba.
+      CONVENCIÓN DE NOMBRES (registro):
+        · Cada foto se guarda como img/archivo/foto-NNN.png (NNN = 3 dígitos correlativos).
+        · El id, el chip visible y el ancla usan ese mismo número: id="foto-NNN" → enlace .../archivo/#foto-NNN
+        · IDs en uso: 001–026 (todas en la grilla; 024–026 además se destacan en el carrusel). PRÓXIMO NÚMERO LIBRE: 027.
+
+      Pasos: guardá la imagen como foto-027.png, copiá un modelo de abajo
+      reemplazando NNN por 027, y subí el contador de arriba.
 
       VARIANTE A — título + año + descripción (muestra botón ⓘ):
       ─────────────────────────────────────────────────────────
-      <div class="foto-general"
-           data-src="../img/archivo/NOMBRE.png"
+      <div class="foto-general" id="foto-NNN"
+           data-src="../img/archivo/foto-NNN.png"
            data-titulo="Título de la foto"
            data-año="Año o época"
            data-desc="Descripción que aparece en el botón ⓘ y en el lightbox."
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/NOMBRE.png" alt="Título de la foto · Año">
+          <img src="../img/archivo/foto-NNN.png" alt="Título de la foto · Año">
+          <a class="foto-id" href="#foto-NNN" onclick="event.stopPropagation()">NNN</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">Año o época</span>
             <strong class="foto-meta-titulo">Título de la foto</strong>
@@ -347,13 +378,14 @@
 
       VARIANTE B — solo título + año (sin botón ⓘ):
       ─────────────────────────────────────────────────────────
-      <div class="foto-general"
-           data-src="../img/archivo/NOMBRE.png"
+      <div class="foto-general" id="foto-NNN"
+           data-src="../img/archivo/foto-NNN.png"
            data-titulo="Título de la foto"
            data-año="Año o época"
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/NOMBRE.png" alt="Título de la foto · Año">
+          <img src="../img/archivo/foto-NNN.png" alt="Título de la foto · Año">
+          <a class="foto-id" href="#foto-NNN" onclick="event.stopPropagation()">NNN</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">Año o época</span>
             <strong class="foto-meta-titulo">Título de la foto</strong>
@@ -363,11 +395,12 @@
 
       VARIANTE C — sin metadatos (foto limpia):
       ─────────────────────────────────────────────────────────
-      <div class="foto-general"
-           data-src="../img/archivo/NOMBRE.png"
+      <div class="foto-general" id="foto-NNN"
+           data-src="../img/archivo/foto-NNN.png"
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/NOMBRE.png" alt="Foto del archivo">
+          <img src="../img/archivo/foto-NNN.png" alt="Foto del archivo">
+          <a class="foto-id" href="#foto-NNN" onclick="event.stopPropagation()">NNN</a>
         </div>
       </div>
       ══════════════════════════════════════════════════════════
@@ -376,14 +409,15 @@
     <div class="fotos-grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
 
       <!-- Variante A: título + año + descripción -->
-      <div class="foto-general"
-           data-src="../img/archivo/1.png"
+      <div class="foto-general" id="foto-001"
+           data-src="../img/archivo/foto-001.png"
            data-titulo="Acto escolar"
            data-año="1990s"
            data-desc="Acto escolar"
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/1.png" alt="Acto escolar · 1990s">
+          <img src="../img/archivo/foto-001.png" alt="Acto escolar · 1990s">
+          <a class="foto-id" href="#foto-001" onclick="event.stopPropagation()">001</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">1990s</span>
             <strong class="foto-meta-titulo">Acto escolar</strong>
@@ -394,13 +428,14 @@
       </div>
 
       <!-- Variante B: solo título + año -->
-      <div class="foto-general"
-           data-src="../img/archivo/2.png"
+      <div class="foto-general" id="foto-002"
+           data-src="../img/archivo/foto-002.png"
            data-titulo="En el recreo"
            data-año="1990s"
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/2.png" alt="En el recreo · 1990s">
+          <img src="../img/archivo/foto-002.png" alt="En el recreo · 1990s">
+          <a class="foto-id" href="#foto-002" onclick="event.stopPropagation()">002</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">1990s</span>
             <strong class="foto-meta-titulo">En el recreo</strong>
@@ -409,14 +444,15 @@
       </div>
 
       <!-- Variante A: título + año + descripción -->
-      <div class="foto-general"
-           data-src="../img/archivo/3.png"
+      <div class="foto-general" id="foto-003"
+           data-src="../img/archivo/foto-003.png"
            data-titulo="Visita del Gobernador Eduardo Angeloz"
            data-año="Década de 1990"
            data-desc="Visita del Gobernador Eduardo Angeloz a la escuela."
            onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/3.png" alt="Visita del Gobernador Eduardo Angeloz">
+          <img src="../img/archivo/foto-003.png" alt="Visita del Gobernador Eduardo Angeloz">
+          <a class="foto-id" href="#foto-003" onclick="event.stopPropagation()">003</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">Década de 1990</span>
             <strong class="foto-meta-titulo">Visita del Gobernador Eduardo Angeloz</strong>
@@ -426,20 +462,129 @@
         </div>
       </div>
 
-     <div class="foto-general"
-          data-src="../img/archivo/4.png"
+     <div class="foto-general" id="foto-004"
+          data-src="../img/archivo/foto-004.png"
           data-titulo="Fotografía grupal"
           data-año="Sin fecha"
           data-desc="Raúl Guzmán · Enrique Bayma · Carlos Brisio · Samuel Masi · Julio Altamirano · Benjamín Desimone · Domingo Quiroga · Juan José Coria · Oscar Galli · Juan José Cáceres · Francisco Coria · Pedro Nuñez · Jorge Balmaceda · Delino Centeno · Emilio Carrizo · Felipe Autaniuk · Ofelia Castagno · Delia Pini · Mirna Varela · Clara Ingignioli · Norma Gallardo · Nélida Pini · Elsa García · María Esther Yucovsky · Paula López · Ernestina Quiroga · Elvira Giménez · Mirna Rovira · María Luján Lázaro · Sara Raquel Chirino · Elda Chetham · Sasana Bianchi · María Esther Fernández"
           onclick="abrirLightbox(this)" style="cursor:pointer;">
         <div class="foto-general-thumb">
-          <img src="../img/archivo/4.png" alt="Fotografía grupal">
+          <img src="../img/archivo/foto-004.png" alt="Fotografía grupal">
+          <a class="foto-id" href="#foto-004" onclick="event.stopPropagation()">004</a>
           <div class="foto-meta">
             <span class="foto-meta-anio">Sin fecha</span>
             <strong class="foto-meta-titulo">Fotografía grupal</strong>
           </div>
           <button class="foto-info-btn" onclick="toggleDesc(event,this)" aria-label="Más información">i</button>
           <div class="foto-desc-panel">33 nombres identificados. Abrí la foto para verlos.</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           Fotos nuevas (Variante C: sin metadatos por ahora).
+           Cada foto tiene un id="foto-NOMBRE" → sirve de ancla permanente
+           (ej. .../archivo/#foto-1-02-a) y de clave para asociarle
+           metadatos o comentarios en el futuro. El chip muestra ese ID.
+           ══════════════════════════════════════════════════════════ -->
+      <div class="foto-general" id="foto-005" data-src="../img/archivo/foto-005.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-005.png" alt="Foto del archivo"><a class="foto-id" href="#foto-005" onclick="event.stopPropagation()">005</a></div>
+      </div>
+      <div class="foto-general" id="foto-006" data-src="../img/archivo/foto-006.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-006.png" alt="Foto del archivo"><a class="foto-id" href="#foto-006" onclick="event.stopPropagation()">006</a></div>
+      </div>
+      <div class="foto-general" id="foto-007" data-src="../img/archivo/foto-007.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-007.png" alt="Foto del archivo"><a class="foto-id" href="#foto-007" onclick="event.stopPropagation()">007</a></div>
+      </div>
+      <div class="foto-general" id="foto-008" data-src="../img/archivo/foto-008.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-008.png" alt="Foto del archivo"><a class="foto-id" href="#foto-008" onclick="event.stopPropagation()">008</a></div>
+      </div>
+      <div class="foto-general" id="foto-009" data-src="../img/archivo/foto-009.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-009.png" alt="Foto del archivo"><a class="foto-id" href="#foto-009" onclick="event.stopPropagation()">009</a></div>
+      </div>
+      <div class="foto-general" id="foto-010" data-src="../img/archivo/foto-010.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-010.png" alt="Foto del archivo"><a class="foto-id" href="#foto-010" onclick="event.stopPropagation()">010</a></div>
+      </div>
+      <div class="foto-general" id="foto-011" data-src="../img/archivo/foto-011.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-011.png" alt="Foto del archivo"><a class="foto-id" href="#foto-011" onclick="event.stopPropagation()">011</a></div>
+      </div>
+      <div class="foto-general" id="foto-012" data-src="../img/archivo/foto-012.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-012.png" alt="Foto del archivo"><a class="foto-id" href="#foto-012" onclick="event.stopPropagation()">012</a></div>
+      </div>
+      <div class="foto-general" id="foto-013" data-src="../img/archivo/foto-013.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-013.png" alt="Foto del archivo"><a class="foto-id" href="#foto-013" onclick="event.stopPropagation()">013</a></div>
+      </div>
+      <div class="foto-general" id="foto-014" data-src="../img/archivo/foto-014.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-014.png" alt="Foto del archivo"><a class="foto-id" href="#foto-014" onclick="event.stopPropagation()">014</a></div>
+      </div>
+      <div class="foto-general" id="foto-015" data-src="../img/archivo/foto-015.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-015.png" alt="Foto del archivo"><a class="foto-id" href="#foto-015" onclick="event.stopPropagation()">015</a></div>
+      </div>
+      <div class="foto-general" id="foto-016" data-src="../img/archivo/foto-016.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-016.png" alt="Foto del archivo"><a class="foto-id" href="#foto-016" onclick="event.stopPropagation()">016</a></div>
+      </div>
+      <div class="foto-general" id="foto-017" data-src="../img/archivo/foto-017.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-017.png" alt="Foto del archivo"><a class="foto-id" href="#foto-017" onclick="event.stopPropagation()">017</a></div>
+      </div>
+      <div class="foto-general" id="foto-018" data-src="../img/archivo/foto-018.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-018.png" alt="Foto del archivo"><a class="foto-id" href="#foto-018" onclick="event.stopPropagation()">018</a></div>
+      </div>
+      <div class="foto-general" id="foto-019" data-src="../img/archivo/foto-019.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-019.png" alt="Foto del archivo"><a class="foto-id" href="#foto-019" onclick="event.stopPropagation()">019</a></div>
+      </div>
+      <div class="foto-general" id="foto-020" data-src="../img/archivo/foto-020.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-020.png" alt="Foto del archivo"><a class="foto-id" href="#foto-020" onclick="event.stopPropagation()">020</a></div>
+      </div>
+      <div class="foto-general" id="foto-021" data-src="../img/archivo/foto-021.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-021.png" alt="Foto del archivo"><a class="foto-id" href="#foto-021" onclick="event.stopPropagation()">021</a></div>
+      </div>
+      <div class="foto-general" id="foto-022" data-src="../img/archivo/foto-022.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-022.png" alt="Foto del archivo"><a class="foto-id" href="#foto-022" onclick="event.stopPropagation()">022</a></div>
+      </div>
+      <div class="foto-general" id="foto-023" data-src="../img/archivo/foto-023.png" onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb"><img src="../img/archivo/foto-023.png" alt="Foto del archivo"><a class="foto-id" href="#foto-023" onclick="event.stopPropagation()">023</a></div>
+      </div>
+
+      <!-- Fotos destacadas (también aparecen en el carrusel de arriba) -->
+      <div class="foto-general" id="foto-024"
+           data-src="../img/archivo/foto-024.png"
+           data-titulo="Primer grado"
+           data-año="1954 · Turno tarde"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/foto-024.png" alt="Primer grado · 1954">
+          <a class="foto-id" href="#foto-024" onclick="event.stopPropagation()">024</a>
+          <div class="foto-meta">
+            <span class="foto-meta-anio">1954</span>
+            <strong class="foto-meta-titulo">Primer grado</strong>
+          </div>
+        </div>
+      </div>
+      <div class="foto-general" id="foto-025"
+           data-src="../img/archivo/foto-025.png"
+           data-titulo="Día de la Bandera"
+           data-año="2005"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/foto-025.png" alt="Día de la Bandera · 2005">
+          <a class="foto-id" href="#foto-025" onclick="event.stopPropagation()">025</a>
+          <div class="foto-meta">
+            <span class="foto-meta-anio">2005</span>
+            <strong class="foto-meta-titulo">Día de la Bandera</strong>
+          </div>
+        </div>
+      </div>
+      <div class="foto-general" id="foto-026"
+           data-src="../img/archivo/foto-026.png"
+           data-titulo="Navidad en los años 90"
+           data-año="1990s"
+           onclick="abrirLightbox(this)" style="cursor:pointer;">
+        <div class="foto-general-thumb">
+          <img src="../img/archivo/foto-026.png" alt="Navidad en los años 90 · 1990s">
+          <a class="foto-id" href="#foto-026" onclick="event.stopPropagation()">026</a>
+          <div class="foto-meta">
+            <span class="foto-meta-anio">1990s</span>
+            <strong class="foto-meta-titulo">Navidad en los años 90</strong>
+          </div>
         </div>
       </div>
 
@@ -555,7 +700,8 @@
     <h2 class="seccion-titulo" style="margin-bottom:8px;">Comentarios</h2>
     <p style="font-size:14px; color:var(--texto-suave); margin-bottom:32px;">
       ¿Reconocés a alguien en las fotos? ¿Tenés más información sobre alguna imagen?
-      Dejá tu comentario. Podés iniciar sesión con Google, Facebook, Twitter o crear una cuenta de Disqus.
+      Dejá tu comentario citando el <strong>ID de la foto</strong> (el código que aparece arriba a la izquierda de cada imagen, por ej. <code>006</code>) para que sepamos a cuál te referís.
+      Podés iniciar sesión con Google, Facebook, Twitter o crear una cuenta de Disqus.
     </p>
     <!--
       ══════════════════════════════════════════════════════
